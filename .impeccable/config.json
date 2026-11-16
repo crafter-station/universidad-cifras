@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "createdAt": "2026-11-16T17:14:26.187Z",
+        "reason": "Crafter Research brand typeface, documented in DESIGN.md/PRODUCT.md; incumbent identity, not re-confirmed this session"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist mono",
+        "createdAt": "2026-11-16T17:14:26.463Z",
+        "reason": "Crafter Research brand typeface, documented in DESIGN.md; incumbent identity"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument serif",
+        "createdAt": "2026-11-16T17:14:26.747Z",
+        "reason": "Crafter Research brand display face, documented in DESIGN.md; incumbent identity"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-16T17:14:26.989Z",
+        "reason": "False positive: detector reads h1-h4 vs body only; real scale is 120px h1, 60px h2, 25px card titles, 16px body (verified in CSS)"
+      }
+    ]
+  }
+}

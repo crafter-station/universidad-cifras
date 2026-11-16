@@ -10,7 +10,7 @@
 <style>
 :root{
   --bg:#EEF4EC; --ink:#0E1F18; --mute:#4F6B5D; --line:#C9D7CB; --card:#F6FAF4; --soft:#DCE7DB;
-  --pub:#C2492B; --pri:#173F31; --third:#5F8F75; --grey:#A8B2A6;
+  --pub:#C2492B; --pri:#173F31; --third:#5F8F75; --grey:#A8B2A6; --hi:#B07A12; --s1:#1D5560; --s2:#3C8791; --s3:#9CCBD0;
   --c0:#173F31; --c1:#C2492B; --c2:#5F8F75; --c3:#E3956F; --c4:#3C7A83; --c5:#A9CDB0; --c6:#8A5A44; --c7:#8B77A8; --c8:#6F8F3E; --c9:#1E6F5C; --c10:#B3BBAE;
   --max:1080px; --r:4px;
   --serif:"Instrument Serif",Georgia,serif; --sans:Geist,Inter,ui-sans-serif,system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
@@ -18,14 +18,14 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#07100D; --ink:#EEF4EC; --mute:#8FB09E; --line:#1F3329; --card:#0D1A14; --soft:#12231C;
-    --pub:#E8704F; --pri:#CFE7D2; --third:#5F8F75; --grey:#3A4A41;
-    --c0:#CFE7D2; --c1:#E8704F; --c2:#5F8F75; --c3:#F0A585; --c4:#6FB3BC; --c5:#2F5A47; --c6:#B58468; --c7:#A794C4; --c8:#9DBB5E; --c9:#4FB39A; --c10:#3A4A41;
+    --pub:#E8704F; --pri:#CFE7D2; --third:#5F8F75; --grey:#5B6B62; --hi:#E3B24A; --s1:#8FD0D8; --s2:#4F9AA4; --s3:#1F4A52;
+    --c0:#CFE7D2; --c1:#E8704F; --c2:#5F8F75; --c3:#F0A585; --c4:#6FB3BC; --c5:#4F8A6C; --c6:#B58468; --c7:#A794C4; --c8:#9DBB5E; --c9:#4FB39A; --c10:#5B6B62;
   }
 }
 :root[data-theme="dark"]{
   --bg:#07100D; --ink:#EEF4EC; --mute:#8FB09E; --line:#1F3329; --card:#0D1A14; --soft:#12231C;
-  --pub:#E8704F; --pri:#CFE7D2; --third:#5F8F75; --grey:#3A4A41;
-  --c0:#CFE7D2; --c1:#E8704F; --c2:#5F8F75; --c3:#F0A585; --c4:#6FB3BC; --c5:#2F5A47; --c6:#B58468; --c7:#A794C4; --c8:#9DBB5E; --c9:#4FB39A; --c10:#3A4A41;
+  --pub:#E8704F; --pri:#CFE7D2; --third:#5F8F75; --grey:#5B6B62; --hi:#E3B24A; --s1:#8FD0D8; --s2:#4F9AA4; --s3:#1F4A52;
+  --c0:#CFE7D2; --c1:#E8704F; --c2:#5F8F75; --c3:#F0A585; --c4:#6FB3BC; --c5:#4F8A6C; --c6:#B58468; --c7:#A794C4; --c8:#9DBB5E; --c9:#4FB39A; --c10:#5B6B62;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
@@ -34,12 +34,15 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--san
 .num{font-variant-numeric:tabular-nums}
 .mono{font-family:var(--mono)}
 a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+::selection{background:var(--pub);color:var(--bg)}
 b,strong{font-weight:500}
 
 /* nav */
 nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;gap:8px;height:52px}
-.links{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.links{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 96%,transparent)}
 .links::-webkit-scrollbar{display:none}
 @media(max-width:1180px){.brand em{display:none}}
 @media(max-width:560px){.brand span{display:none}}
@@ -76,8 +79,8 @@ section .intro{color:var(--mute);max-width:600px;margin:0 0 32px;font-size:17px}
 .g3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}.grid{gap:34px}}
 .card{border-top:1px solid var(--line);padding:16px 0 0;background:transparent}
-.card h3{font:500 15px var(--sans);margin:0 0 4px;letter-spacing:-.01em}
-.card .sub{font-size:13.5px;color:var(--mute);margin:0 0 16px}
+.card h3{font:400 clamp(21px,2.5vw,25px)/1.15 var(--serif);margin:0 0 6px;letter-spacing:-.015em;text-wrap:balance}
+.card .sub{font-size:14px;color:var(--mute);margin:0 0 16px;max-width:68ch}
 .stat{font:400 56px/1 var(--serif);letter-spacing:-.03em}
 .statcap{font-size:13.5px;color:var(--mute);margin-top:6px}
 .pub{color:var(--pub)} .pri{color:var(--pri)}
@@ -85,10 +88,10 @@ section .intro{color:var(--mute);max-width:600px;margin:0 0 32px;font-size:17px}
 
 /* controls */
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:3px;gap:2px;margin:0 8px 12px 0;flex-wrap:wrap}
-.seg button{border:0;background:transparent;color:var(--mute);font:400 12px var(--mono);padding:6px 13px;border-radius:99px;cursor:pointer}
+.seg button{border:0;background:transparent;color:var(--mute);font:400 12px var(--mono);padding:6px 13px;min-height:32px;border-radius:99px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .legend{display:flex;gap:6px 16px;flex-wrap:wrap;margin:0 0 12px;font-size:13px}
-.legend button{border:0;background:none;color:var(--ink);font:inherit;font-size:13px;cursor:pointer;padding:2px 0;display:inline-flex;align-items:center}
+.legend button{border:0;background:none;color:var(--ink);font:inherit;font-size:13px;cursor:pointer;padding:6px 0;min-height:32px;display:inline-flex;align-items:center}
 .legend button.off{opacity:.35;text-decoration:line-through}
 
 /* bars */
@@ -108,6 +111,8 @@ section .intro{color:var(--mute);max-width:600px;margin:0 0 32px;font-size:17px}
 .col .cv{font:400 12px var(--mono);color:var(--mute);text-align:center;margin-bottom:3px;white-space:nowrap}
 .col .cl{font:400 12px var(--mono);color:var(--mute);text-align:center;margin-top:6px}
 .col:hover .seg2{filter:brightness(1.15)}
+
+@media(max-width:560px){.hb{grid-template-columns:minmax(96px,40%) 1fr auto}.hb .l{white-space:normal;overflow:visible}.cols{gap:4px}}
 
 /* waffle */
 .waffle{display:grid;grid-template-columns:repeat(16,1fr);gap:4px;max-width:520px}
@@ -132,20 +137,25 @@ svg text{font:12px var(--mono);fill:var(--mute)}
 /* guess */
 .guess{background:var(--ink);color:var(--bg);border-radius:var(--r);padding:22px;margin-top:28px}
 .guess .q{font:400 22px/1.2 var(--serif);margin:0 0 14px}
-.guess input[type=range]{width:100%;accent-color:var(--pub)}
+.guess input[type=range]{width:100%;accent-color:var(--hi);min-height:32px}
 .guess .row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px}
 .guess .gv{font:400 40px/1 var(--serif)}
-.guess button{border:0;background:var(--bg);color:var(--ink);padding:8px 16px;border-radius:99px;font:400 12px var(--mono);cursor:pointer}
+.guess button{border:0;background:var(--bg);color:var(--ink);padding:8px 16px;min-height:36px;border-radius:99px;font:400 12px var(--mono);cursor:pointer}
+.guess button.ghost{background:transparent;color:var(--bg);text-decoration:underline;text-underline-offset:3px}
+.guess :focus-visible{outline-color:var(--bg)}
+.guess .btns{display:flex;gap:8px;align-items:center}
+.guess{margin:0 0 32px}
+section.guessing .spoil{filter:blur(7px);user-select:none;transition:filter .5s}
 .guess .res{margin-top:12px;font-size:14px;display:none}
 .guess .res.show{display:block}
 
 /* income */
 .inc{position:relative;height:86px;margin:10px 4px 0}
 .inc .axis{position:absolute;left:0;right:0;top:40px;height:6px;background:var(--soft);border-radius:2px}
-.inc .range{position:absolute;top:40px;height:6px;background:var(--pri);border-radius:2px;opacity:.5}
+.inc .range{position:absolute;top:40px;height:6px;background:var(--s2);border-radius:2px;opacity:.6}
 .inc .mk{position:absolute;top:26px;transform:translateX(-50%);text-align:center;font:400 12px var(--mono);color:var(--mute);white-space:nowrap}
 .inc .mk b{display:block;font-size:13px;color:var(--ink);font-weight:500}
-.inc .you{position:absolute;top:34px;width:18px;height:18px;border-radius:50%;background:var(--pub);transform:translateX(-50%);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--pub);transition:left .3s}
+.inc .you{position:absolute;top:34px;width:18px;height:18px;border-radius:50%;background:var(--hi);transform:translateX(-50%);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--hi);transition:left .3s}
 .inc .mk.up{top:-4px}
 
 /* tiles (Land vs People) */
@@ -158,11 +168,14 @@ svg text{font:12px var(--mono);fill:var(--mute)}
 .tiles{position:relative;width:100%;transition:height .9s cubic-bezier(.3,.8,.2,1)}
 .tiles i{position:absolute;left:0;top:0;width:var(--s);height:var(--s);border-radius:2px;transition:transform .9s cubic-bezier(.3,.8,.2,1),background-color .5s,opacity .25s;will-change:transform}
 .tiles i:hover{outline:2px solid var(--ink);z-index:2}
-.tiles .lb{position:absolute;left:0;top:0;font:400 12px/1.25 var(--mono);color:var(--ink);transition:opacity .4s;pointer-events:none}
+.tiles .lb{position:absolute;left:0;top:0;font:400 12px/1.25 var(--mono);color:var(--ink);transition:opacity .4s;background:none;border:0;padding:0;text-align:left;cursor:pointer;min-height:36px}
+.tiles .lb[aria-pressed=true]{text-decoration:underline;text-underline-offset:3px}
+.live #unpin{margin-left:auto;font:400 12px var(--mono);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:5px 12px;cursor:pointer}
 .tiles .lb b{display:block;font:500 12px var(--sans);letter-spacing:-.005em}
 .tiles .lb span{color:var(--mute)}
-.tiles .lb.out{opacity:0}
+.tiles .lb.out{opacity:0;pointer-events:none}
 
+@media(pointer:coarse){nav a.lk,.navbtn,.seg button,.legend button,.guess button,#talk .x,#talk .nv{min-height:44px}nav a.lk{display:inline-flex;align-items:center}.live #unpin{min-height:44px}.tiles .lb{min-height:44px}}
 #tip{position:fixed;z-index:200;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:var(--r);max-width:240px;opacity:0;transition:opacity .12s;line-height:1.4}
 footer{padding:56px 0 80px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
 footer h4{color:var(--ink);margin:0 0 10px;font:500 14px var(--sans)}
@@ -173,17 +186,20 @@ footer li{margin-bottom:6px}
 /* talk mode */
 #talk{position:fixed;inset:0;z-index:100;background:var(--bg);color:var(--ink);display:none;flex-direction:column;padding:28px clamp(20px,5vw,64px)}
 #talk.open{display:flex}
-#talk .top,#talk .bot{display:flex;justify-content:space-between;align-items:center;font:400 12px var(--mono);color:var(--mute);letter-spacing:.04em}
+#talk .top,#talk .bot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:400 clamp(14px,1.6vw,18px) var(--mono);color:var(--mute);letter-spacing:.04em}
+#talk .bot .nv{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:8px 16px;min-height:44px;font:inherit;cursor:pointer}
+#talk .bot .nv:disabled{opacity:.35;cursor:default}
+#talk .bot .mid{flex:1;text-align:center}
 #talk .top svg{width:18px;height:18px;fill:var(--pri);margin-right:8px;vertical-align:-4px}
 #talk .stage{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1100px;width:100%;margin:0 auto;animation:fade .45s}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-#talk .k{font:400 14px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+#talk .k{font:400 clamp(14px,1.8vw,20px) var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
 #talk .b{font:400 clamp(72px,19vw,260px)/.92 var(--serif);letter-spacing:-.04em}
 #talk .b.sm{font-size:clamp(48px,11vw,150px)}
 #talk .b em{font-style:italic;color:var(--pub)}
 #talk .c{font:400 clamp(20px,3vw,34px)/1.2 var(--sans);letter-spacing:-.02em;max-width:820px;margin-top:22px}
-#talk .s{font:400 12px var(--mono);color:var(--mute);margin-top:22px}
-#talk .x{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:5px 12px;font:400 12px var(--mono);cursor:pointer}
+#talk .s{font:400 clamp(14px,1.6vw,20px) var(--mono);color:var(--mute);margin-top:22px}
+#talk .x{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:8px 16px;min-height:44px;font:inherit;cursor:pointer}
 #talk .prog{position:absolute;left:0;top:0;height:2px;background:var(--pub);transition:width .3s}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;animation:none!important}.reveal{opacity:1;transform:none}.hb .f{width:var(--w)}}
 </style>
@@ -194,7 +210,7 @@ footer li{margin-bottom:6px}
     <a class="brand" href="#top" aria-label="La universidad en cifras, by Liz Riveros, Crafter Research"><svg viewBox="0 0 258 258" aria-hidden="true"><path d="M118.238 16.262C111.482 11.4 99.9003 5.62505 92.2517 3.26931C74.9754 -2.31209 61.2312 0.473844 52.1188 3.50057C34.3839 9.3909 23.1637 17.3398 12.9798 32.0237C-3.018 54.7384 -1.30627 92.0001 17.4396 113.282C21.6313 118.385 23.9203 117.58 40.6062 105.794C41.1838 105.243 38.9626 101.57 35.6118 97.3194C28.0736 87.6862 23.7841 70.2632 26.209 60.5011C34.074 29.8239 72.1683 13.8835 96.3841 31.0488C101.735 34.7695 118.578 50.1432 133.719 65.2112C156.435 87.3932 163.188 92.535 168.887 92.0615C174.586 91.588 176.608 89.6589 177.27 83.5096C178.226 76.8049 175.724 72.8474 162.814 60.893C154.116 52.642 147.113 45.2566 147.134 43.8571C147.151 42.7375 153.199 38.0697 160.665 33.7035C208.922 4.47877 259.519 64.8793 219.089 103.462C213.891 108.422 204.705 113.602 198.705 115.191C191.85 116.767 160.245 117.687 120.978 117.092C47.5669 115.979 43.5706 116.758 23.9629 133.539C-1.12747 155.276 -7.39134 192.976 9.54962 220.67C31.485 256.839 79.721 266.529 114.252 241.576L126.916 232.249L141.283 241.986C164.663 258.018 183.68 261.387 206.842 254.179C253.172 239.483 271.118 182.082 241.827 143.002C238.477 138.752 236.774 138.446 232.187 140.616C218.126 148.242 218.419 147.686 226.416 164.606C232.48 177.576 233.542 182.632 231.971 192.407C227.614 216.978 208.584 233.207 184.682 232.845C166.187 232.564 160.267 228.835 126.619 195.569C108.947 178.502 92.6562 164.257 90.3799 164.222C86.1118 164.158 76.8749 172.697 76.8113 176.895C76.7943 178.015 84.341 187.088 93.8711 196.752L110.969 214.089L100.607 221.771C64.0584 248.374 13.049 215.124 25.6449 172.76C29.5392 159.94 42.8446 145.864 55.4323 141.575C60.2992 139.689 90.1929 139.023 130.598 139.635C204.863 140.762 213.705 139.496 230.998 125.2C282.576 83.4269 254.198 2.92565 187.611 2.19579C168.262 1.90235 157.675 5.66133 139.549 18.5449L130.342 25.1245L118.238 16.262Z"/></svg><span>La universidad en cifras</span><em>by Liz Riveros · Crafter Research</em></a>
     <div class="links"><a class="lk" href="#cuadros">Cuadros</a><a class="lk" href="#oferta">Oferta</a><a class="lk" href="#acceso">Acceso</a><a class="lk" href="#estudiantes">Estudiantes</a><a class="lk" href="#docentes">Docentes</a><a class="lk" href="#investigacion">Investigación</a><a class="lk" href="#egresados">Egresados</a></div>
     <button class="navbtn" id="present">Presentar</button>
-    <button class="navbtn" id="theme" aria-label="Cambiar tema">Tema</button>
+    <button class="navbtn" id="theme" aria-label="Cambiar tema" aria-pressed="false">Tema</button>
   </div>
   <div id="bar"></div>
 </nav>
@@ -202,7 +218,7 @@ footer li{margin-bottom:6px}
 <header class="hero wrap" id="top">
   <div class="kicker">Minedu · 2.ª edición · noviembre 2026</div>
   <h1>La universidad<br><em>en cifras</em></h1>
-  <p class="lead">Versión interactiva del informe del Ministerio de Educación sobre la educación universitaria en el Perú. Mueve los cuadros, filtra y adivina antes de ver el dato.</p>
+  <p class="lead">Versión interactiva y <b>no oficial</b> del informe del Ministerio de Educación sobre la educación universitaria en el Perú. Mueve los cuadros, filtra y adivina antes de ver el dato.</p>
   <div class="by"><svg viewBox="0 0 258 258" aria-hidden="true"><path d="M118.238 16.262C111.482 11.4 99.9003 5.62505 92.2517 3.26931C74.9754 -2.31209 61.2312 0.473844 52.1188 3.50057C34.3839 9.3909 23.1637 17.3398 12.9798 32.0237C-3.018 54.7384 -1.30627 92.0001 17.4396 113.282C21.6313 118.385 23.9203 117.58 40.6062 105.794C41.1838 105.243 38.9626 101.57 35.6118 97.3194C28.0736 87.6862 23.7841 70.2632 26.209 60.5011C34.074 29.8239 72.1683 13.8835 96.3841 31.0488C101.735 34.7695 118.578 50.1432 133.719 65.2112C156.435 87.3932 163.188 92.535 168.887 92.0615C174.586 91.588 176.608 89.6589 177.27 83.5096C178.226 76.8049 175.724 72.8474 162.814 60.893C154.116 52.642 147.113 45.2566 147.134 43.8571C147.151 42.7375 153.199 38.0697 160.665 33.7035C208.922 4.47877 259.519 64.8793 219.089 103.462C213.891 108.422 204.705 113.602 198.705 115.191C191.85 116.767 160.245 117.687 120.978 117.092C47.5669 115.979 43.5706 116.758 23.9629 133.539C-1.12747 155.276 -7.39134 192.976 9.54962 220.67C31.485 256.839 79.721 266.529 114.252 241.576L126.916 232.249L141.283 241.986C164.663 258.018 183.68 261.387 206.842 254.179C253.172 239.483 271.118 182.082 241.827 143.002C238.477 138.752 236.774 138.446 232.187 140.616C218.126 148.242 218.419 147.686 226.416 164.606C232.48 177.576 233.542 182.632 231.971 192.407C227.614 216.978 208.584 233.207 184.682 232.845C166.187 232.564 160.267 228.835 126.619 195.569C108.947 178.502 92.6562 164.257 90.3799 164.222C86.1118 164.158 76.8749 172.697 76.8113 176.895C76.7943 178.015 84.341 187.088 93.8711 196.752L110.969 214.089L100.607 221.771C64.0584 248.374 13.049 215.124 25.6449 172.76C29.5392 159.94 42.8446 145.864 55.4323 141.575C60.2992 139.689 90.1929 139.023 130.598 139.635C204.863 140.762 213.705 139.496 230.998 125.2C282.576 83.4269 254.198 2.92565 187.611 2.19579C168.262 1.90235 157.675 5.66133 139.549 18.5449L130.342 25.1245L118.238 16.262Z"/></svg><span>by Liz Riveros · Crafter Research · basado en el informe del Minedu · inspirado en el post de Hernán De La Cruz Cruzado</span></div>
   <div class="big num" id="counter">0</div>
   <p class="bigcap" id="bigcap">estudiantes de pregrado en 2025</p>
@@ -212,13 +228,13 @@ footer li{margin-bottom:6px}
 <section id="cuadros"><div class="wrap">
   <div class="kicker">Mismo universo, otra medida</div>
   <h2>Cada cuadro es un grupo de personas</h2>
-  <p class="intro">Elige qué contar y cómo medirlo. Los cuadros no aparecen ni desaparecen: se reacomodan. Es la idea de Land vs People aplicada a la universidad.</p>
+  <p class="intro">Elige qué contar y cómo medirlo. Los cuadros no aparecen ni desaparecen: se reacomodan. Es la idea de Land vs People aplicada a la universidad. Aquí está el panorama general; más abajo cada tema se explica con detalle.</p>
   <div class="ctrl"><span class="lab2">Contar</span>
-    <div class="seg" id="uni" role="group"><button aria-pressed="true" data-k="est">Estudiantes</button><button aria-pressed="false" data-k="doc">Docentes</button><button aria-pressed="false" data-k="pub">Publicaciones</button></div>
+    <div class="seg" id="uni" role="group" aria-label="Contar"><button aria-pressed="true" data-k="est">Estudiantes</button><button aria-pressed="false" data-k="doc">Docentes</button><button aria-pressed="false" data-k="pub">Publicaciones</button></div>
   </div>
-  <div class="ctrl"><span class="lab2">Medir por</span><div class="seg" id="meas" role="group"></div></div>
-  <div class="story" id="story"></div>
-  <div class="live" id="live"><span class="num" id="liveN">0</span><span id="liveC"></span></div>
+  <div class="ctrl"><span class="lab2">Medir por</span><div class="seg" id="meas" role="group" aria-label="Medir por"></div></div>
+  <div class="story" id="story" aria-live="polite"></div>
+  <div class="live" id="live"><span class="num" id="liveN">0</span><span id="liveC"></span><button id="unpin" hidden>Ver todos</button></div>
   <div class="tiles" id="tiles"></div>
   <p class="src plain mono" id="tileSrc"></p>
 </div></section>
@@ -237,25 +253,27 @@ footer li{margin-bottom:6px}
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Las 122 universidades públicas</h3>
-      <p class="sub">Cada cuadro es una universidad. Toca la leyenda para resaltar.</p>
+      <h3>Solo 52 de las 122 universidades públicas tienen licencia</h3>
+      <p class="sub">Cada cuadro es una universidad. Toca la leyenda para resaltar. «Solo con ley de creación» = sin comisión organizadora ni licencia aún.</p>
       <div class="legend" id="wfLegend"></div>
       <div class="waffle" id="waffle"></div>
-      <p class="src">Hay 50 universidades públicas con comisión organizadora (sin órganos de gobierno elegidos); 12 de ellas ya están licenciadas. Fuente: Sunedu, Minedu.</p>
+      <p class="sub" style="margin-top:14px">Hay 50 universidades públicas con comisión organizadora (sin órganos de gobierno elegidos); 12 de ellas ya están licenciadas.</p>
+      <p class="src">Fuente: Sunedu, Minedu.</p>
     </div>
     <div class="card reveal">
-      <h3>¿Dónde están las licenciadas?</h3>
-      <p class="sub">Públicas: 81 % fuera de Lima. Privadas: 55 % en Lima.</p>
+      <h3>El 81 % de las públicas licenciadas está fuera de Lima; el 55 % de las privadas, en Lima</h3>
+      <p class="sub">Ubicación de las universidades licenciadas.</p>
       <div class="stackrow"><div class="cap">Públicas licenciadas (52)</div><div class="stack" id="geoPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas licenciadas (53)</div><div class="stack" id="geoPri"></div></div>
       <p class="sub" style="margin-top:20px">Todas las regiones tienen al menos una universidad pública licenciada. La licencia es hoy de carácter permanente, siempre que se mantengan las condiciones básicas de calidad.</p>
-      <p class="src">Entre 2018 y 2021 se denegó la licencia a 49 universidades (46 privadas y 3 públicas).</p>
+      <p class="sub">Entre 2018 y 2021 se denegó la licencia a 49 universidades (46 privadas y 3 públicas).</p>
+      <p class="src">Fuente: Sunedu, Minedu.</p>
     </div>
   </div>
 
   <div class="card reveal" style="margin-top:14px">
     <h3>Buscador de universidades licenciadas</h3>
-    <p class="sub">Corte: 30 de setiembre de 2026.</p>
+    <p class="sub">Fuente: Sunedu. Corte: 30 de setiembre de 2026.</p>
     <div class="srch">
       <input id="q" type="search" placeholder="Buscar universidad…" aria-label="Buscar universidad">
       <select id="reg" aria-label="Región"></select>
@@ -271,54 +289,56 @@ footer li{margin-bottom:6px}
   <div class="kicker">Ingreso y permanencia</div>
   <h2>El acceso</h2>
   <p class="intro">Entrar a la universidad sigue dependiendo del bolsillo. Y entrar a una pública es mucho más difícil que a una privada.</p>
+  <div id="g1"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Tasa de matrícula por nivel socioeconómico</h3>
-      <p class="sub">Jóvenes de 18 a 24 años matriculados (%). Quintiles 1-2 = menores ingresos; 4-5 = mayores.</p>
+      <h3>Solo 1 de cada 10 jóvenes de escasos recursos accede a la universidad</h3>
+      <p class="sub">Tasa de matrícula de jóvenes de 18 a 24 años (%). Quintiles 1-2 = menores ingresos; 4-5 = mayores.</p>
       <div class="legend" id="lgAcc"></div>
       <div class="line" id="lnAcc"></div>
-      <p class="src">Solo 1 de cada 10 jóvenes de escasos recursos accede a la universidad. Fuente: INEI (ENAHO).</p>
+      <p class="src">Fuente: INEI (ENAHO).</p>
     </div>
     <div class="card reveal">
-      <h3>De postulantes a ingresantes (2025)</h3>
-      <p class="sub">Más de 884 mil jóvenes postularon.</p>
-      <div class="seg" id="segPost" role="group"><button aria-pressed="true" data-k="pub">Pública</button><button aria-pressed="false" data-k="pri">Privada</button></div>
+      <h3 class="spoil">Por cada 10 postulantes a una pública ingresan 2; a una privada, 8</h3>
+      <p class="sub">De postulantes a ingresantes (2025). Más de 884 mil jóvenes postularon; el 53 % lo hizo a una privada.</p>
+      <div class="seg" id="segPost" role="group" aria-label="Tipo de gestión"><button aria-pressed="true" data-k="pub">Pública</button><button aria-pressed="false" data-k="pri">Privada</button></div>
       <div id="post"></div>
-      <p class="src">Por cada 10 postulantes a una pública ingresan 2; a una privada, 8. El 53 % de los jóvenes postula a una privada.</p>
+      <p class="src">Fuente: SIRIES.</p>
     </div>
   </div>
 
   <div class="card line reveal" style="margin-top:14px">
-    <h3>Interrupción de estudios por semestre</h3>
-    <p class="sub">% de estudiantes de pregrado que interrumpieron. En 2024-2 la tasa total fue 12,3 %.</p>
+    <h3>Las privadas interrumpen más que las públicas: 14,1 % frente a 6,3 % en 2024-2</h3>
+    <p class="sub">% de estudiantes de pregrado que interrumpieron sus estudios por semestre. En 2024-2 la tasa total fue 12,3 %.</p>
     <div class="legend" id="lgInt"></div>
     <div id="lnInt"></div>
     <p class="src">Solo universidades licenciadas. Fuente: SIRIES.</p>
   </div>
 
-  <div id="g1"></div>
-</div></section>
+  </div></section>
 
 <!-- ESTUDIANTES -->
 <section id="estudiantes"><div class="wrap">
   <div class="kicker">Matrícula</div>
   <h2>Los estudiantes</h2>
-  <p class="intro">1 525 560 estudiantes de pregrado: 3 de cada 4 estudian en una privada, y cuatro universidades concentran el 41 % de toda la matrícula.</p>
+  <p class="intro">1 525 560 estudiantes de pregrado: <span class="spoil">3 de cada 4 estudian en una privada</span>, y cuatro universidades concentran el 41 % de toda la matrícula.</p>
+  <div id="g2"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Edad de los estudiantes</h3>
+      <h3>El 70 % de los estudiantes tiene entre 18 y 24 años</h3>
       <p class="sub">% por rango de edad, 2025.</p>
-      <div class="seg" id="segAge" role="group"><button aria-pressed="true" data-k="tot">Total</button><button aria-pressed="false" data-k="pub">Pública</button><button aria-pressed="false" data-k="pri">Privada</button></div>
+      <div class="seg" id="segAge" role="group" aria-label="Tipo de gestión"><button aria-pressed="true" data-k="tot">Total</button><button aria-pressed="false" data-k="pub">Pública</button><button aria-pressed="false" data-k="pri">Privada</button></div>
       <div class="cols" id="age"></div>
-      <p class="src">El 70 % tiene entre 18 y 24 años. Fuente: SIRIES.</p>
+      <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>Género y condición socioeconómica</h3>
-      <p class="sub">Mujeres y varones (2025), y pobreza (2023).</p>
+      <h3>Las privadas tienen más mujeres (52,7 %); las públicas, más varones (55,2 %)</h3>
+      <p class="sub">Mujeres y varones (2025) y pobreza (2023). SISFOH: Sistema de Focalización de Hogares, que clasifica a los hogares por nivel socioeconómico.</p>
       <div class="stackrow"><div class="cap">Privadas · mujeres 52,7 %</div><div class="stack" id="gPri"></div></div>
       <div class="stackrow"><div class="cap">Públicas · varones 55,2 %</div><div class="stack" id="gPub"></div></div>
+      <div class="legend" id="lgGen"></div>
       <div class="stackrow" style="margin-top:22px"><div class="cap">Públicas · condición socioeconómica (2023)</div><div class="stack" id="nsePub"></div></div>
       <div class="stackrow"><div class="cap">Privadas · condición socioeconómica (2023)</div><div class="stack" id="nsePri"></div></div>
       <div class="legend" id="lgNse"></div>
@@ -328,112 +348,120 @@ footer li{margin-bottom:6px}
 
   <div class="grid g2" style="margin-top:14px">
     <div class="card reveal">
-      <h3>Las 10 universidades con más estudiantes</h3>
-      <p class="sub">Matrícula 2025. Solo una es pública.</p>
+      <h3>De las 10 universidades con más estudiantes, solo una es pública</h3>
+      <p class="sub">Matrícula de pregrado 2025.</p>
       <div class="hb" id="top10"></div>
+      <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>Las 10 carreras más demandadas</h3>
-      <p class="sub">Matrícula 2025 (pública y privada). Las 3 primeras suman el 29 %.</p>
+      <h3>Derecho, Administración y Psicología suman el 29 % de la matrícula</h3>
+      <p class="sub">Las 10 carreras más demandadas, matrícula 2025 (pública y privada). En las públicas, la de mayor peso es Producción Agrícola y Ganadera (6,9 %).</p>
       <div class="hb" id="carreras"></div>
-      <p class="src">En las públicas, la carrera con mayor peso es Producción Agrícola y Ganadera (6,9 %).</p>
+      <p class="src">Fuente: SIRIES.</p>
     </div>
   </div>
-  <div id="g2"></div>
-</div></section>
+  </div></section>
 
 <!-- DOCENTES -->
 <section id="docentes"><div class="wrap">
   <div class="kicker">Plana docente</div>
   <h2>Los docentes</h2>
   <p class="intro">89 088 docentes. En la pública hacen carrera; en la privada, la mayoría está contratada y a tiempo parcial.</p>
+  <div id="g3"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Evolución del número de docentes</h3>
-      <p class="sub">Miles de docentes de pregrado, 2017–2025.</p>
+      <h3>Los docentes de privadas pasaron de 47,7 a 63,4 mil entre 2017 y 2025</h3>
+      <p class="sub">Miles de docentes de pregrado, 2017–2025. Un docente puede estar contado más de una vez si trabaja en varias universidades.</p>
       <div class="cols" id="docEvo"></div>
       <div class="legend" style="margin-top:10px"><span><span class="dot" style="background:var(--pub)"></span>Públicas</span><span><span class="dot" style="background:var(--pri)"></span>Privadas</span></div>
-      <p class="src">Un docente puede estar contado más de una vez si trabaja en varias universidades. Fuente: SIRIES.</p>
+      <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>Condición laboral</h3>
-      <p class="sub">Ordinario = ingresó por concurso público y hace carrera.</p>
+      <h3>En las públicas el 76 % de los docentes hace carrera; en las privadas, el 9 %</h3>
+      <p class="sub">Condición laboral. Ordinario = ingresó por concurso público y hace carrera.</p>
       <div class="stackrow"><div class="cap">Públicas (25 705)</div><div class="stack" id="lPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas (63 383)</div><div class="stack" id="lPri"></div></div>
-      <h3 style="margin-top:22px">Régimen de dedicación</h3>
-      <p class="sub">La Ley Universitaria exige al menos 25 % a tiempo completo.</p>
+      <div class="legend" id="lgLab"></div>
+      <h3 style="margin-top:28px">Públicas: 71 % a tiempo completo o con dedicación exclusiva; privadas: 27 %</h3>
+      <p class="sub">Régimen de dedicación. La Ley Universitaria exige al menos 25 % a tiempo completo.</p>
       <div class="stackrow"><div class="cap">Públicas</div><div class="stack" id="dPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas</div><div class="stack" id="dPri"></div></div>
       <div class="legend" id="lgDed"></div>
+      <p class="src">Fuente: SIRIES.</p>
     </div>
   </div>
 
   <div class="grid g2" style="margin-top:14px">
     <div class="card reveal">
-      <h3>Docentes mujeres</h3>
-      <p class="sub">Solo 37,4 % del total; la brecha es mayor en las públicas.</p>
+      <h3>Solo el 37,4 % de los docentes son mujeres; en las públicas, el 30,4 %</h3>
+      <p class="sub">Mujeres y varones por tipo de gestión.</p>
       <div class="stackrow"><div class="cap">Públicas</div><div class="stack" id="fPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas</div><div class="stack" id="fPri"></div></div>
+      <div class="legend" id="lgFem"></div>
+      <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>Docentes en el Renacyt</h3>
-      <p class="sub">Registro de investigadores del Concytec, 2025.</p>
+      <h3>Solo el 12,4 % de los docentes está en el Renacyt</h3>
+      <p class="sub">Renacyt: Registro Nacional Científico, Tecnológico y de Innovación Tecnológica del Concytec, 2025.</p>
       <div class="hb" id="renacyt"></div>
       <p class="src">11 007 docentes registrados: 12,4 % del total. Fuente: SIRIES, Renacyt.</p>
     </div>
   </div>
-  <div id="g3"></div>
 </div></section>
 
 <!-- INVESTIGACIÓN -->
 <section id="investigacion"><div class="wrap">
   <div class="kicker">Producción científica</div>
   <h2>La investigación</h2>
-  <p class="intro">Las publicaciones crecieron 57 % entre 2021 y 2025, pero Brasil produce 9 veces lo que produce el Perú.</p>
+  <p class="intro">Las publicaciones crecieron 57 % entre 2021 y 2025, pero Brasil produce <span class="spoil">9 veces</span> lo que produce el Perú.</p>
+  <div id="g4"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Publicaciones indizadas por año</h3>
-      <p class="sub">Artículos, revisiones y ponencias (Scopus). Toca una barra.</p>
+      <h3>Las publicaciones indizadas crecieron 57 % entre 2021 y 2025</h3>
+      <p class="sub">Artículos, revisiones y ponencias (Scopus). Toca una barra. Un artículo con afiliación pública y privada se cuenta en ambas, por eso las partes no suman exacto el total (7782 → 12 223).</p>
       <div class="cols" id="pubs"></div>
       <div class="legend" style="margin-top:10px"><span><span class="dot" style="background:var(--pub)"></span>Públicas</span><span><span class="dot" style="background:var(--pri)"></span>Privadas</span></div>
-      <p class="src">Un artículo con afiliación pública y privada se cuenta en ambas, por eso las partes no suman exacto el total (7782 → 12 223).</p>
+      <p class="src">Fuente: Elsevier-Scopus.</p>
     </div>
     <div class="card reveal">
-      <h3>Universidades con más publicaciones</h3>
-      <p class="sub">Acumulado 2021–2025.</p>
-      <div class="seg" id="segRank" role="group"><button aria-pressed="true" data-k="all">Todas</button><button aria-pressed="false" data-k="pub">Solo públicas</button></div>
+      <h3>San Marcos encabeza las publicaciones con 5 612 en 2021–2025</h3>
+      <p class="sub">Universidades con más publicaciones, acumulado 2021–2025.</p>
+      <div class="seg" id="segRank" role="group" aria-label="Alcance"><button aria-pressed="true" data-k="all">Todas</button><button aria-pressed="false" data-k="pub">Solo públicas</button></div>
       <div class="hb" id="rank"></div>
+      <p class="src">Fuente: Elsevier-Scopus.</p>
     </div>
   </div>
 
   <div class="card reveal" style="margin-top:14px">
-    <h3>Perú en América Latina</h3>
-    <p class="sub">Publicaciones acumuladas 2021–2025 (Scopus).</p>
+    <h3 class="spoil">Brasil publica 9 veces lo que publica el Perú, que es sexto en esta lista</h3>
+    <p class="sub">Perú en América Latina: publicaciones acumuladas 2021–2025.</p>
     <div class="hb" id="latam"></div>
+    <p class="src">Fuente: Elsevier-Scopus.</p>
   </div>
-  <div id="g4"></div>
 </div></section>
 
 <!-- EGRESADOS -->
 <section id="egresados"><div class="wrap">
   <div class="kicker">Mercado laboral</div>
   <h2>Los egresados</h2>
-  <p class="intro">579 714 jóvenes de 22 a 29 años con estudios universitarios culminados trabajaban en 2025. Solo 6 de cada 10 tenían un empleo adecuado.</p>
+  <p class="intro">579 714 jóvenes de 22 a 29 años con estudios universitarios culminados trabajaban en 2025. Solo <span class="spoil">6 de cada 10</span> tenían un empleo adecuado.</p>
+  <div id="g5"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Empleo de jóvenes egresados (2025)</h3>
-      <p class="sub">Jóvenes de 22 a 29 años con universidad culminada.</p>
+      <h3 class="spoil">Solo 6 de cada 10 jóvenes egresados tienen un empleo adecuado</h3>
+      <p class="sub">Empleo de jóvenes de 22 a 29 años con universidad culminada (2025).</p>
       <div class="stack" id="emp" style="height:44px"></div>
       <div class="legend" id="lgEmp" style="margin-top:12px"></div>
-      <p class="src">Fuente: INEI, ENAHO.</p>
+      <p class="src">Fuente: INEI (ENAHO). Los porcentajes del informe suman 101 por redondeo.</p>
     </div>
     <div class="card reveal">
-      <h3>¿Qué estudiaron los egresados ocupados?</h3>
+      <h3>El 42,6 % de los egresados ocupados estudió ciencias sociales, comerciales y derecho</h3>
       <p class="sub">% de la PEA ocupada con universidad completa, por campo (2025).</p>
       <div class="hb" id="campo"></div>
+      <p class="src">Fuente: INEI (ENAHO).</p>
     </div>
   </div>
 
@@ -442,13 +470,12 @@ footer li{margin-bottom:6px}
     <p class="sub">Ingreso laboral mensual de jóvenes egresados universitarios, 2025. Escribe o mueve el control.</p>
     <div class="inc" id="inc"><div class="axis"></div><div class="range"></div></div>
     <div class="row" style="display:flex;gap:12px;align-items:center;margin-top:6px;flex-wrap:wrap">
-      <input id="incIn" type="range" min="0" max="4000" step="50" value="1800" style="flex:1 1 220px;accent-color:var(--pub)" aria-label="Ingreso mensual en soles">
+      <input id="incIn" type="range" min="0" max="4000" step="50" value="1800" style="flex:1 1 220px;accent-color:var(--hi)" aria-label="Ingreso mensual en soles">
       <b class="num" id="incVal" style="min-width:90px;text-align:right">S/ 1800</b>
     </div>
     <p id="incTxt" style="font-size:14px;margin:10px 0 0"></p>
     <p class="src">El 25 % gana menos de S/ 1194, la mitad gana más de S/ 1817 y el 25 % más de S/ 2929. Fuente: INEI, ENAHO.</p>
   </div>
-  <div id="g5"></div>
 </div></section>
 
 <footer><div class="wrap">
@@ -460,6 +487,7 @@ footer li{margin-bottom:6px}
     <li>La tasa de matrícula de quintiles, la edad por gestión y la evolución docente por gestión se reconstruyeron cruzando los valores del gráfico con los totales; coinciden con los porcentajes que el informe da en texto.</li>
     <li>Hecho por <b>Liz Riveros</b> en <b>Crafter Research</b>. Inspirado en el post de Hernán De La Cruz Cruzado (participó en el informe) y en la idea de cuadros que se reacomodan de Land vs People (Crafter Research). El estilo sigue la guía de marca de Crafter Research.</li>
     <li>En los cuadros, cada uno vale 1/1000 del total; las medidas con porcentajes del informe (edad, dedicación, pobreza) son aproximadas y así se marcan.</li>
+    <li>Glosario. <b>Quintiles</b>: cinco grupos de igual tamaño según el ingreso per cápita del hogar. <b>Comisión organizadora</b>: autoridades designadas de una universidad pública nueva, sin órganos de gobierno elegidos.</li>
     <li>Informe completo: <a href="https://www.gob.pe/institucion/minedu/informes-publicaciones/8801214-la-universidad-en-cifras" target="_blank" rel="noopener">gob.pe/minedu</a></li>
   </ul>
 </div></footer>
@@ -480,20 +508,30 @@ function showTip(html,e){tip.innerHTML=html;tip.style.opacity=1;const x=e.client
 function hideTip(){tip.style.opacity=0}
 document.addEventListener('scroll',hideTip,{passive:true});
 function bindTip(el,html){el.addEventListener('mousemove',e=>showTip(html,e));el.addEventListener('mouseleave',hideTip);
-  el.addEventListener('click',e=>{showTip(html,e);setTimeout(hideTip,2200)})}
+  el.addEventListener('click',e=>{showTip(html,e);setTimeout(hideTip,4000)})}
 
 /* ============ tema ============ */
 (function(){const r=document.documentElement;let t=null;try{t=localStorage.getItem('cr-brand-theme')}catch(e){}
  if(t)r.dataset.theme=t;
- $('#theme').onclick=()=>{const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
-  r.dataset.theme=dark?'light':'dark';try{localStorage.setItem('cr-brand-theme',r.dataset.theme)}catch(e){}}})();
+ const isDark=()=>r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+ const sync=()=>{$('#theme').setAttribute('aria-pressed',isDark());window.fixInk&&window.fixInk()};
+ $('#theme').onclick=()=>{r.dataset.theme=isDark()?'light':'dark';try{localStorage.setItem('cr-brand-theme',r.dataset.theme)}catch(e){}sync()};
+ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',sync);
+ window.addEventListener('load',sync);sync();})();
 
 /* ============ componentes ============ */
+function inkFor(el){const m=getComputedStyle(el).backgroundColor,n=(m.match(/[\d.]+/g)||[]).slice(0,3).map(Number);if(n.length<3)return '';
+  const k=m.startsWith('color(')?255:1,L=c=>{c=c*k/255;return c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4)};
+  const l=.2126*L(n[0])+.7152*L(n[1])+.0722*L(n[2]);
+  return (l+.05)/(.012+.05)>=(.94+.05)/(l+.05)?'#0E1F18':'#F6FAF4'}
+window.fixInk=()=>document.querySelectorAll('.stack>div').forEach(d=>{const c=inkFor(d);if(c)d.style.color=c});
 function stack(el,segs,{total}={}){ // segs:[{label,v,color,text}]
   el.innerHTML='';const sum=total||segs.reduce((a,s)=>a+s.v,0);
   segs.forEach(s=>{const d=document.createElement('div');d.style.flexGrow=s.v;d.style.flexBasis=0;d.style.background=css(s.color);
     const pct=s.v/sum*100;d.textContent=pct>=7?(s.text??pct.toFixed(1).replace('.',',')+' %'):'';
     bindTip(d,`<b>${s.label}</b><br>${s.raw??pct.toFixed(1).replace('.',',')+' %'}`);el.appendChild(d)});
+  el.setAttribute('role','img');el.setAttribute('aria-label',segs.map(s=>`${s.label}: ${s.raw??(s.v/sum*100).toFixed(1).replace('.',',')+' %'}`).join('; '));
+  window.fixInk();
 }
 function hbars(el,items,{max,color='pri'}={}){ // items:[{l,v,t,color,hl}]
   const m=max||Math.max(...items.map(i=>i.v));el.innerHTML='';
@@ -516,51 +554,68 @@ function columns(el,cols,{max,unit=''}={}){ // cols:[{label,parts:[{v,color,name
     d.appendChild(wrap);const cl=document.createElement('div');cl.className='cl';cl.textContent=c.label;d.appendChild(cl);
     bindTip(d,`<b>${c.label}</b><br>`+c.parts.map(p=>`${p.name}: ${p.t??p.v}`).join('<br>')+(c.parts.length>1&&c.total?`<br>Total: ${c.total}`:''));
     el.appendChild(d)});
+  el.setAttribute('role','img');el.setAttribute('aria-label',cols.map(c=>c.label+': '+c.parts.map(p=>(c.parts.length>1?p.name+' ':'')+(p.t??p.v)).join(', ')).join('. '));
 }
 function lineChart(el,{labels,series,min=0,max,fmtY=v=>v+' %',fmtT=v=>String(v).replace('.',',')+' %',legend}){
   const hidden=new Set();
-  const W=640,H=250,pl=40,pr=14,pt=14,pb=28;
+  const H=250,pl=40,pr=14,pt=14,pb=28;
+  const live=document.createElement('div');live.className='sr';live.setAttribute('aria-live','polite');
   function draw(){
+    const W=Math.max(300,Math.round(el.clientWidth)||640);
     const vis=series.filter(s=>!hidden.has(s.name));
     const hi=max??Math.max(...series.flatMap(s=>s.data))*1.1;
     const x=i=>pl+i*(W-pl-pr)/(labels.length-1), y=v=>pt+(1-(v-min)/(hi-min))*(H-pt-pb);
     let g='';const ticks=4;
     for(let k=0;k<=ticks;k++){const v=min+(hi-min)*k/ticks;g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end">${fmtY(Math.round(v*10)/10)}</text>`}
-    labels.forEach((l,i)=>{g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${l}</text>`});
+    const step=Math.max(1,Math.ceil(labels.length*(String(labels[0]).length*8+14)/(W-pl-pr)));
+    labels.forEach((l,i)=>{if(i%step===0)g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${l}</text>`});
     vis.forEach(s=>{const p=s.data.map((v,i)=>`${i?'L':'M'}${x(i)},${y(v)}`).join('');
       g+=`<path d="${p}" fill="none" stroke="${css(s.color)}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
       s.data.forEach((v,i)=>{g+=`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="var(--card)" stroke="${css(s.color)}" stroke-width="2"/>`})});
     g+=`<line id="vl" x1="0" x2="0" y1="${pt}" y2="${H-pb}" stroke="var(--ink)" stroke-opacity=".25" style="display:none"/>`;
     g+=`<rect id="ov" x="${pl}" y="0" width="${W-pl-pr}" height="${H}" fill="transparent"/>`;
-    el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img">${g}</svg>`;
+    const sum=labels.map((l,i)=>l+': '+vis.map(s=>s.name+' '+fmtT(s.data[i])).join(', ')).join('. ');
+    el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Gráfico de líneas. ${sum}. Usa las flechas para recorrer los años.">${g}</svg>`;
+    el.appendChild(live);
     const svg=el.querySelector('svg'),ov=svg.querySelector('#ov'),vl=svg.querySelector('#vl');
+    const at=(i,e)=>{vl.style.display='';vl.setAttribute('x1',x(i));vl.setAttribute('x2',x(i));
+      const html=`<b>${labels[i]}</b><br>`+vis.map(s=>`<span class="dot" style="background:${css(s.color)}"></span>${s.name}: ${fmtT(s.data[i])}`).join('<br>');
+      showTip(html,e);live.textContent=labels[i]+': '+vis.map(s=>s.name+' '+fmtT(s.data[i])).join(', ')};
     const move=e=>{const r=svg.getBoundingClientRect();const px=(e.clientX-r.left)/r.width*W;
-      let i=Math.round((px-pl)/((W-pl-pr)/(labels.length-1)));i=Math.max(0,Math.min(labels.length-1,i));
-      vl.style.display='';vl.setAttribute('x1',x(i));vl.setAttribute('x2',x(i));
-      showTip(`<b>${labels[i]}</b><br>`+vis.map(s=>`<span class="dot" style="background:${css(s.color)}"></span>${s.name}: ${fmtT(s.data[i])}`).join('<br>'),e)};
+      let i=Math.round((px-pl)/((W-pl-pr)/(labels.length-1)));i=Math.max(0,Math.min(labels.length-1,i));at(i,e)};
     ov.addEventListener('mousemove',move);ov.addEventListener('click',move);
     ov.addEventListener('mouseleave',()=>{vl.style.display='none';hideTip()});
+    let ki=labels.length-1;
+    const key=e=>{const d={ArrowLeft:-1,ArrowRight:1}[e.key];if(e.key==='Home')ki=0;else if(e.key==='End')ki=labels.length-1;else if(d)ki=Math.max(0,Math.min(labels.length-1,ki+d));else return;
+      e.preventDefault();const r=svg.getBoundingClientRect();at(ki,{clientX:r.left+x(ki)/W*r.width,clientY:r.top+r.height/2})};
+    svg.addEventListener('keydown',key);svg.addEventListener('blur',()=>{vl.style.display='none';hideTip()});
   }
-  if(legend){legend.innerHTML='';series.forEach(s=>{const b=document.createElement('button');
+  if(legend){legend.innerHTML='';series.forEach(s=>{const b=document.createElement('button');b.setAttribute('aria-pressed','true');
     b.innerHTML=`<span class="dot" style="background:${css(s.color)}"></span>${s.name}`;
-    b.onclick=()=>{hidden.has(s.name)?hidden.delete(s.name):hidden.add(s.name);b.classList.toggle('off');draw()};legend.appendChild(b)})}
-  draw();
+    b.onclick=()=>{hidden.has(s.name)?hidden.delete(s.name):hidden.add(s.name);b.classList.toggle('off');b.setAttribute('aria-pressed',!hidden.has(s.name));draw()};legend.appendChild(b)})}
+  draw();let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,150)});
 }
 function seg(el,cb){el.querySelectorAll('button').forEach(b=>b.onclick=()=>{el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));cb(b.dataset.k)})}
 function guess(host,{q,truth,unit='%',note,max=100}){
+  const sec=host.closest('section');if(sec)sec.classList.add('guessing');
+  const u=unit.trim()==='%'?'puntos':unit.trim();
   const d=document.createElement('div');d.className='guess';
-  d.innerHTML=`<p class="q">Adivina: ${q}</p><input type="range" min="0" max="${max}" value="${Math.round(max/2)}" aria-label="Tu respuesta"><div class="row"><span class="gv num">${Math.round(max/2)}${unit}</span><button>Ver respuesta</button></div><div class="res"></div>`;
-  const r=d.querySelector('input'),gv=d.querySelector('.gv'),res=d.querySelector('.res');
+  d.innerHTML=`<p class="q">Adivina: ${q}</p><input type="range" min="0" max="${max}" value="${Math.round(max/2)}" aria-label="Tu respuesta: ${q}"><div class="row"><span class="gv num" aria-hidden="true">${Math.round(max/2)}${unit}</span><div class="btns"><button class="go">Ver respuesta</button><button class="ghost skip">Saltar</button></div></div><div class="res" aria-live="polite"></div>`;
+  const r=d.querySelector('input'),gv=d.querySelector('.gv'),res=d.querySelector('.res'),go=d.querySelector('.go'),skip=d.querySelector('.skip');
+  const open=()=>{if(sec)sec.classList.remove('guessing')};
   r.oninput=()=>gv.textContent=r.value+unit;
-  d.querySelector('button').onclick=()=>{const diff=Math.abs(r.value-truth);
-    res.innerHTML=`Respuesta: <b>${truth}${unit}</b>. ${diff<=3?'Casi exacto.':diff<=10?'Cerca.':'Lejos: te desviaste '+diff+' puntos.'} ${note||''}`;res.classList.add('show')};
+  go.onclick=()=>{if(res.classList.contains('show')){res.classList.remove('show');go.textContent='Ver respuesta';return}
+    const diff=Math.abs(r.value-truth);
+    res.innerHTML=`Respuesta: <b>${truth}${unit}</b>. ${diff<=3?'Casi exacto.':diff<=10?'Cerca.':'Lejos: te desviaste '+diff+' '+u+'.'} ${note||''}`;res.classList.add('show');go.textContent='Probar otra vez';skip.hidden=true;open()};
+  skip.onclick=()=>{open();skip.hidden=true};
   host.appendChild(d);
 }
 
 /* ============ hero ============ */
 (function(){
   const el=$('#counter');let cur=0,raf;
-  window.setBig=(v,cap,dur=800)=>{cancelAnimationFrame(raf);const a=cur,t0=performance.now();
+  const RM=matchMedia('(prefers-reduced-motion: reduce)');
+  window.setBig=(v,cap,dur=800)=>{if(RM.matches)dur=1;cancelAnimationFrame(raf);const a=cur,t0=performance.now();
     $('#bigcap').textContent=cap;$('#liveC').textContent=cap;
     (function tick(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);cur=a+(v-a)*e;el.textContent=$('#liveN').textContent=fmt(cur);if(p<1)raf=requestAnimationFrame(tick)})(t0)};
   window.setBig(1525560,'estudiantes de pregrado en 2025',1400);
@@ -572,11 +627,11 @@ function guess(host,{q,truth,unit='%',note,max=100}){
   const w=$('#waffle'),lg=$('#wfLegend');let sel=null;
   cats.forEach(c=>{for(let i=0;i<c.v;i++){const e=document.createElement('i');e.dataset.k=c.k;e.style.background=css(c.c);bindTip(e,`<b>${c.n}</b>`);w.appendChild(e)}
     const b=document.createElement('button');b.innerHTML=`<span class="dot" style="background:${css(c.c)}"></span>${c.n} <b class="num" style="margin-left:5px">${c.v}</b>`;
-    b.onclick=()=>{sel=sel===c.k?null:c.k;w.classList.toggle('dim',!!sel);w.querySelectorAll('i').forEach(i=>i.classList.toggle('hl',i.dataset.k===sel));
+    b.setAttribute('aria-pressed','false');b.onclick=()=>{sel=sel===c.k?null:c.k;lg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b&&!!sel));w.classList.toggle('dim',!!sel);w.querySelectorAll('i').forEach(i=>i.classList.toggle('hl',i.dataset.k===sel));
       lg.querySelectorAll('button').forEach(x=>x.style.opacity=(!sel||x===b)?1:.4)};lg.appendChild(b)});
-  stack($('#geoPub'),[{label:'Públicas licenciadas en Lima',v:10,color:'pub',raw:'10 universidades (19 %)'},{label:'Públicas licenciadas en el resto del país',v:42,color:'pri',raw:'42 universidades (81 %)'}]);
-  stack($('#geoPri'),[{label:'Privadas licenciadas en Lima',v:29,color:'pub',raw:'29 universidades (55 %)'},{label:'Privadas licenciadas en el resto del país',v:24,color:'pri',raw:'24 universidades (45 %)'}]);
-  const geoLg=document.createElement('div');geoLg.className='legend';geoLg.innerHTML='<span><span class="dot" style="background:var(--pub)"></span>Lima</span><span><span class="dot" style="background:var(--pri)"></span>Resto del país</span>';$('#geoPri').parentElement.after(geoLg);
+  stack($('#geoPub'),[{label:'Públicas licenciadas en Lima',v:10,color:'c6',raw:'10 universidades (19 %)'},{label:'Públicas licenciadas en el resto del país',v:42,color:'c2',raw:'42 universidades (81 %)'}]);
+  stack($('#geoPri'),[{label:'Privadas licenciadas en Lima',v:29,color:'c6',raw:'29 universidades (55 %)'},{label:'Privadas licenciadas en el resto del país',v:24,color:'c2',raw:'24 universidades (45 %)'}]);
+  const geoLg=document.createElement('div');geoLg.className='legend';geoLg.innerHTML='<span><span class="dot" style="background:var(--c6)"></span>Lima</span><span><span class="dot" style="background:var(--c2)"></span>Resto del país</span>';$('#geoPri').parentElement.after(geoLg);
 
   const D={
    'Amazonas':['U. N. Intercultural Fabiola Salazar Leguía de Bagua','U. N. Toribio Rodríguez de Mendoza de Amazonas'],
@@ -623,7 +678,7 @@ function guess(host,{q,truth,unit='%',note,max=100}){
 /* ============ acceso ============ */
 (function(){
   lineChart($('#lnAcc'),{labels:['2019','2020','2021','2022','2023','2024','2025'],min:0,max:45,legend:$('#lgAcc'),
-    series:[{name:'Quintiles 4-5',color:'pri',data:[34.8,30.0,31.9,31.5,33.8,37.1,39.0]},{name:'Quintiles 1-2',color:'pub',data:[9.9,10.7,9.8,10.4,10.8,12.9,12.2]},{name:'Brecha',color:'third',data:[24.9,19.3,22.1,21.0,23.0,24.2,26.7]}]});
+    series:[{name:'Quintiles 4-5',color:'c8',data:[34.8,30.0,31.9,31.5,33.8,37.1,39.0]},{name:'Quintiles 1-2',color:'c6',data:[9.9,10.7,9.8,10.4,10.8,12.9,12.2]},{name:'Brecha',color:'c4',data:[24.9,19.3,22.1,21.0,23.0,24.2,26.7]}]});
   const P={pub:{n:'Públicas',a:411537,i:72460,c:'pub'},pri:{n:'Privadas',a:472491,i:353346,c:'pri'}};
   function post(k){const p=P[k],el=$('#post');
     el.innerHTML=`<div style="display:flex;align-items:baseline;gap:10px;margin:6px 0 14px"><span class="stat num" style="color:var(--${p.c})">${(p.i/p.a*100).toFixed(0)} %</span><span class="statcap">de los postulantes a universidades ${p.n.toLowerCase()} ingresan</span></div><div class="hb" id="postB" style="grid-template-columns:90px 1fr auto"></div>`;
@@ -646,11 +701,12 @@ function guess(host,{q,truth,unit='%',note,max=100}){
     parts:[{v:A[k][i],color:col[k],name:'Estudiantes',t:A[k][i].toFixed(1).replace('.',',')+' %'}]})),{max:55})}
   seg($('#segAge'),age);age('tot');
 
-  stack($('#gPri'),[{label:'Mujeres (privadas)',v:615.7,color:'pub',raw:'615,7 mil'},{label:'Varones (privadas)',v:553.7,color:'pri',raw:'553,7 mil'}]);
-  stack($('#gPub'),[{label:'Mujeres (públicas)',v:159.7,color:'pub',raw:'159,7 mil'},{label:'Varones (públicas)',v:196.4,color:'pri',raw:'196,4 mil'}]);
-  const nse=(el,a)=>stack(el,[{label:'Pobre extremo',v:a[0],color:'pub'},{label:'Pobre',v:a[1],color:'third'},{label:'Sin dato o no pobre',v:a[2],color:'grey'}].map(s=>({...s,text:undefined})));
+  stack($('#gPri'),[{label:'Mujeres (privadas)',v:615.7,color:'c7',raw:'615,7 mil'},{label:'Varones (privadas)',v:553.7,color:'c4',raw:'553,7 mil'}]);
+  stack($('#gPub'),[{label:'Mujeres (públicas)',v:159.7,color:'c7',raw:'159,7 mil'},{label:'Varones (públicas)',v:196.4,color:'c4',raw:'196,4 mil'}]);
+  const nse=(el,a)=>stack(el,[{label:'Pobre extremo',v:a[0],color:'s1'},{label:'Pobre',v:a[1],color:'s2'},{label:'Sin dato o no pobre',v:a[2],color:'grey'}].map(s=>({...s,text:undefined})));
   nse($('#nsePub'),[14.7,25.5,59.8]);nse($('#nsePri'),[8.2,14.6,77.2]);
-  $('#lgNse').innerHTML='<span><span class="dot" style="background:var(--pub)"></span>Pobre extremo</span><span><span class="dot" style="background:var(--third)"></span>Pobre</span><span><span class="dot" style="background:var(--grey)"></span>Sin dato o no pobre</span><span style="width:100%"></span><span><span class="dot" style="background:var(--pub)"></span>Mujeres</span><span><span class="dot" style="background:var(--pri)"></span>Varones</span>';
+  $('#lgNse').innerHTML='<span><span class="dot" style="background:var(--s1)"></span>Pobre extremo</span><span><span class="dot" style="background:var(--s2)"></span>Pobre</span><span><span class="dot" style="background:var(--grey)"></span>Sin dato o no pobre</span>';
+  $('#lgGen').innerHTML='<span><span class="dot" style="background:var(--c7)"></span>Mujeres</span><span><span class="dot" style="background:var(--c4)"></span>Varones</span>';
 
   const U=[['Universidad Tecnológica del Perú',259952,'pri'],['Universidad César Vallejo',146551,'pri'],['Universidad Privada del Norte',131371,'pri'],['U. Peruana de Ciencias Aplicadas',83375,'pri'],['Universidad Continental',77995,'pri'],['U. Nacional Mayor de San Marcos',36325,'pub'],['U. Privada Antenor Orrego',34362,'pri'],['Universidad Científica del Sur',34043,'pri'],['Universidad de Lima',33547,'pri'],['U. de San Martín de Porres',31415,'pri']];
   hbars($('#top10'),U.map(u=>({l:u[0],v:u[1],color:u[2]})));
@@ -665,13 +721,15 @@ function guess(host,{q,truth,unit='%',note,max=100}){
   const pub=[24.2,24.6,26.7,25.2,26.5,25.9,26.5,25.6,25.7],pri=[47.7,52.0,52.7,44.0,47.1,55.2,61.1,60.8,63.4];
   const f1=v=>v.toFixed(1).replace('.',',')+' mil';
   columns($('#docEvo'),yrs.map((y,i)=>({label:y,top:(pub[i]+pri[i]).toFixed(0),total:f1(pub[i]+pri[i]),parts:[{v:pub[i],color:'pub',name:'Públicas',t:f1(pub[i])},{v:pri[i],color:'pri',name:'Privadas',t:f1(pri[i])}]})),{max:92});
-  stack($('#lPub'),[{label:'Ordinarios (públicas)',v:19604,color:'pub',raw:'19 604 (76,3 %)'},{label:'Contratados (públicas)',v:5689,color:'pri',raw:'5 689 (22,1 %)'},{label:'Extraordinarios (públicas)',v:412,color:'grey',raw:'412'}]);
-  stack($('#lPri'),[{label:'Ordinarios (privadas)',v:5780,color:'pub',raw:'5 780 (9,1 %)'},{label:'Contratados (privadas)',v:56844,color:'pri',raw:'56 844 (89,7 %)'},{label:'Extraordinarios (privadas)',v:759,color:'grey',raw:'759'}]);
-  const ded=(el,a)=>stack(el,[{label:'Dedicación exclusiva',v:a[0],color:'pub'},{label:'Tiempo completo',v:a[1],color:'third'},{label:'Tiempo parcial',v:a[2],color:'pri'}]);
+  stack($('#lPub'),[{label:'Ordinarios (públicas)',v:19604,color:'c9',raw:'19 604 (76,3 %)'},{label:'Contratados (públicas)',v:5689,color:'c8',raw:'5 689 (22,1 %)'},{label:'Extraordinarios (públicas)',v:412,color:'grey',raw:'412'}]);
+  stack($('#lPri'),[{label:'Ordinarios (privadas)',v:5780,color:'c9',raw:'5 780 (9,1 %)'},{label:'Contratados (privadas)',v:56844,color:'c8',raw:'56 844 (89,7 %)'},{label:'Extraordinarios (privadas)',v:759,color:'grey',raw:'759'}]);
+  const ded=(el,a)=>stack(el,[{label:'Dedicación exclusiva',v:a[0],color:'s1'},{label:'Tiempo completo',v:a[1],color:'s2'},{label:'Tiempo parcial',v:a[2],color:'s3'}]);
   ded($('#dPub'),[23.4,47.7,28.9]);ded($('#dPri'),[0.2,27.0,72.9]);
-  $('#lgDed').innerHTML='<span><span class="dot" style="background:var(--pub)"></span>Ordinario / Dedic. exclusiva</span><span><span class="dot" style="background:var(--third)"></span>Tiempo completo</span><span><span class="dot" style="background:var(--pri)"></span>Contratado / Tiempo parcial</span><span><span class="dot" style="background:var(--grey)"></span>Extraordinario</span>';
-  stack($('#fPub'),[{label:'Mujeres (públicas)',v:7825,color:'pub',raw:'7 825 (30,4 %)'},{label:'Varones (públicas)',v:17880,color:'pri',raw:'17 880'}]);
-  stack($('#fPri'),[{label:'Mujeres (privadas)',v:25463,color:'pub',raw:'25 463 (40,2 %)'},{label:'Varones (privadas)',v:37920,color:'pri',raw:'37 920'}]);
+  $('#lgDed').innerHTML='<span><span class="dot" style="background:var(--s1)"></span>Dedicación exclusiva</span><span><span class="dot" style="background:var(--s2)"></span>Tiempo completo</span><span><span class="dot" style="background:var(--s3)"></span>Tiempo parcial</span>';
+  $('#lgLab').innerHTML='<span><span class="dot" style="background:var(--c9)"></span>Ordinarios</span><span><span class="dot" style="background:var(--c8)"></span>Contratados</span><span><span class="dot" style="background:var(--grey)"></span>Extraordinarios</span>';
+  $('#lgFem').innerHTML='<span><span class="dot" style="background:var(--c7)"></span>Mujeres</span><span><span class="dot" style="background:var(--c4)"></span>Varones</span>';
+  stack($('#fPub'),[{label:'Mujeres (públicas)',v:7825,color:'c7',raw:'7 825 (30,4 %)'},{label:'Varones (públicas)',v:17880,color:'c4',raw:'17 880'}]);
+  stack($('#fPri'),[{label:'Mujeres (privadas)',v:25463,color:'c7',raw:'25 463 (40,2 %)'},{label:'Varones (privadas)',v:37920,color:'c4',raw:'37 920'}]);
   hbars($('#renacyt'),[{l:'Públicas',v:18.4,t:'18,4 %',color:'pub'},{l:'Privadas',v:9.9,t:'9,9 %',color:'pri'},{l:'Total',v:12.4,t:'12,4 %',color:'third'}],{max:25});
   guess($('#g3'),{q:'¿qué % de los docentes de universidades públicas trabaja a tiempo completo o con dedicación exclusiva?',truth:71,note:'En las privadas, casi 3 de cada 4 trabajan a tiempo parcial.'});
 })();
@@ -685,15 +743,15 @@ function guess(host,{q,truth,unit='%',note,max=100}){
     const el=$('#rank');el.parentElement.classList.remove('in');hbars(el,l,{max:5612});requestAnimationFrame(()=>requestAnimationFrame(()=>el.parentElement.classList.add('in')))}
   seg($('#segRank'),rank);rank('all');
   const L=[['Brasil',452411],['México',156239],['Chile',99940],['Colombia',86668],['Argentina',80540],['Perú',50185],['Ecuador',37289],['Cuba',11937],['Uruguay',11434],['Costa Rica',8619],['Venezuela',6848],['Bolivia',3182],['Paraguay',2976]];
-  hbars($('#latam'),L.map(l=>({l:l[0],v:l[1],color:l[0]==='Perú'?'pub':'grey',hl:l[0]==='Perú'})));
+  hbars($('#latam'),L.map(l=>({l:l[0],v:l[1],color:l[0]==='Perú'?'hi':'grey',hl:l[0]==='Perú'})));
   guess($('#g4'),{q:'¿cuántas veces más publica Brasil que el Perú?',truth:9,unit:' veces',max:20,note:'452 411 frente a 50 185 publicaciones en 2021–2025.'});
 })();
 
 /* ============ egresados ============ */
 (function(){
-  stack($('#emp'),[{label:'Empleo adecuado',v:61,color:'pri'},{label:'Subempleado',v:19,color:'third'},{label:'Desempleado o inactivo',v:21,color:'pub'}],{total:101});
-  $('#lgEmp').innerHTML='<span><span class="dot" style="background:var(--pri)"></span>Empleo adecuado 61 %</span><span><span class="dot" style="background:var(--third)"></span>Subempleado 19 %</span><span><span class="dot" style="background:var(--pub)"></span>Desempleado o inactivo 21 %</span>';
-  hbars($('#campo'),[['Ciencias sociales, comerciales y derecho',42.6],['Ingeniería, industria y construcción',24.2],['Educación',15.0],['Ciencias de la salud',9.2],['Ciencias naturales, exactas y comunicación',3.7],['Agropecuaria y veterinaria',3.3],['Humanidades y arte',2.1]].map(c=>({l:c[0],v:c[1],t:c[1].toFixed(1).replace('.',',')+' %'})),{color:'pri',max:45});
+  stack($('#emp'),[{label:'Empleo adecuado',v:61,color:'s1'},{label:'Subempleado',v:19,color:'s2'},{label:'Desempleado o inactivo',v:21,color:'hi'}],{total:101});
+  $('#lgEmp').innerHTML='<span><span class="dot" style="background:var(--s1)"></span>Empleo adecuado 61 %</span><span><span class="dot" style="background:var(--s2)"></span>Subempleado 19 %</span><span><span class="dot" style="background:var(--hi)"></span>Desempleado o inactivo 21 %</span>';
+  hbars($('#campo'),[['Ciencias sociales, comerciales y derecho',42.6],['Ingeniería, industria y construcción',24.2],['Educación',15.0],['Ciencias de la salud',9.2],['Ciencias naturales, exactas y comunicación',3.7],['Agropecuaria y veterinaria',3.3],['Humanidades y arte',2.1]].map(c=>({l:c[0],v:c[1],t:c[1].toFixed(1).replace('.',',')+' %'})),{color:'s2',max:45});
 
   const inc=$('#inc'),MAX=4000,p=v=>(v/MAX*100)+'%';
   inc.querySelector('.range').style.cssText+=`left:${p(1194)};width:${(2929-1194)/MAX*100}%`;
@@ -715,11 +773,11 @@ function guess(host,{q,truth,unit='%',note,max=100}){
     est:{n:'Estudiantes',unit:'estudiantes',total:1525560,src:'SIRIES, corte 31/08/2026 · SISFOH (pobreza, 2023) · Minedu, Digesu, Dipoda',
       m:[
         {k:'gestion',n:'Gestión',story:'Tres de cada cuatro estudian en una universidad privada.',g:[['Privadas',1169451,'pri'],['Públicas',356109,'pub']]},
-        {k:'genero',n:'Género',story:'51 % mujeres y 49 % varones: casi mitad y mitad.',g:[['Mujeres',775423,'pub'],['Varones',750137,'pri']]},
-        {k:'edad',n:'Edad',story:'Siete de cada diez tienen entre 18 y 24 años.',approx:true,note:'Valores a partir de los porcentajes del informe.',
+        {k:'genero',n:'Género',story:'51 % mujeres y 49 % varones: casi mitad y mitad.',g:[['Mujeres',775423,'c7'],['Varones',750137,'c4']]},
+        {k:'edad',n:'Edad',story:'Siete de cada diez tienen entre 18 y 24 años.',approx:true,ramp:true,note:'Valores a partir de los porcentajes del informe.',
           g:[['Menos de 18',4.1],['18–19',22.3],['20–24',47.9],['25–29',14.5],['30–34',5.5],['35–39',2.8],['40–44',1.4],['45 o más',1.5]]},
         {k:'pobreza',n:'Pobreza',story:'Más de 1 de cada 4 vive en pobreza o pobreza extrema.',approx:true,note:'Datos de 2023 (SISFOH); «sin dato o no pobre» agrupa a quienes no tienen clasificación.',
-          g:[['Pobre extremo',151610,'pub'],['Pobre',267376,'c3'],['Sin dato o no pobre',1142868,'c10']]},
+          g:[['Pobre extremo',151610,'s1'],['Pobre',267376,'s2'],['Sin dato o no pobre',1142868,'c10']]},
         {k:'univ',n:'Universidad',story:'Cuatro universidades privadas concentran el 41 % de la matrícula.',
           g:[['UTP',259952,'pri'],['U. César Vallejo',146551,'pri'],['U. Privada del Norte',131371,'pri'],['UPC',83375,'pri'],['U. Continental',77995,'pri'],['UNMSM (pública)',36325,'pub'],['U. Antenor Orrego',34362,'pri'],['U. Científica del Sur',34043,'pri'],['U. de Lima',33547,'pri'],['USMP',31415,'pri'],['Resto',null,'c10']]},
         {k:'carrera',n:'Carrera',story:'Derecho, Administración y Psicología suman el 29 % de la matrícula.',
@@ -728,15 +786,15 @@ function guess(host,{q,truth,unit='%',note,max=100}){
     doc:{n:'Docentes',unit:'docentes',total:89088,src:'SIRIES, corte 31/08/2026 · Renacyt · Minedu, Digesu, Dipoda',
       m:[
         {k:'gestion',n:'Gestión',story:'Siete de cada diez docentes trabajan en una universidad privada.',g:[['Privadas',63383,'pri'],['Públicas',25705,'pub']]},
-        {k:'genero',n:'Género',story:'Solo 37 de cada 100 docentes son mujeres.',g:[['Varones',55800,'pri'],['Mujeres',33288,'pub']]},
-        {k:'cond',n:'Condición',story:'Solo 3 de cada 10 hacen carrera en la universidad; el resto es contratado.',g:[['Contratados',62533,'c0'],['Ordinarios',25384,'pub'],['Extraordinarios',1171,'c2']]},
-        {k:'ded',n:'Dedicación',story:'Seis de cada diez trabajan a tiempo parcial.',approx:true,note:'Valores a partir de los porcentajes del informe (60 % / 33 % / 7 %).',g:[['Tiempo parcial',60,'c0'],['Tiempo completo',33,'c2'],['Dedicación exclusiva',7,'pub']]},
-        {k:'ren',n:'Renacyt',story:'Solo 12 de cada 100 docentes están registrados en el Renacyt.',g:[['En el Renacyt',11007,'pub'],['No registrados',78081,'c10']]}
+        {k:'genero',n:'Género',story:'Solo 37 de cada 100 docentes son mujeres.',g:[['Varones',55800,'c4'],['Mujeres',33288,'c7']]},
+        {k:'cond',n:'Condición',story:'Solo 3 de cada 10 hacen carrera en la universidad; el resto es contratado.',g:[['Contratados',62533,'c8'],['Ordinarios',25384,'c9'],['Extraordinarios',1171,'grey']]},
+        {k:'ded',n:'Dedicación',story:'Seis de cada diez trabajan a tiempo parcial.',approx:true,note:'Valores a partir de los porcentajes del informe (60 % / 33 % / 7 %).',g:[['Tiempo parcial',60,'s3'],['Tiempo completo',33,'s2'],['Dedicación exclusiva',7,'s1']]},
+        {k:'ren',n:'Renacyt',story:'Solo 12 de cada 100 docentes están registrados en el Renacyt.',g:[['En el Renacyt',11007,'c9'],['No registrados',78081,'c10']]}
       ]},
     pub:{n:'Publicaciones',unit:'publicaciones',total:null,src:'Elsevier-Scopus, corte 27/09/2026 · acumulado 2021–2025 · Minedu, Digesu, Dipoda',
       m:[
-        {k:'pais',n:'País',story:'Brasil publica 9 veces lo que publica el Perú.',g:[['Brasil',452411,'c0'],['México',156239],['Chile',99940],['Colombia',86668],['Argentina',80540],['Perú',50185,'pub'],['Ecuador',37289],['Cuba',11937],['Uruguay',11434],['Costa Rica',8619],['Venezuela',6848],['Bolivia',3182],['Paraguay',2976]],plain:'c2'},
-        {k:'bp',n:'Brasil vs Perú',story:'Por cada cuadro del Perú, Brasil tiene nueve.',g:[['Brasil',452411,'c0'],['Perú',50185,'pub'],['Resto (11 países)',null,'c10']]}
+        {k:'pais',n:'País',story:'Brasil publica 9 veces lo que publica el Perú.',g:[['Brasil',452411,'c0'],['México',156239],['Chile',99940],['Colombia',86668],['Argentina',80540],['Perú',50185,'hi'],['Ecuador',37289],['Cuba',11937],['Uruguay',11434],['Costa Rica',8619],['Venezuela',6848],['Bolivia',3182],['Paraguay',2976]],plain:'c2'},
+        {k:'bp',n:'Brasil vs Perú',story:'Por cada cuadro del Perú, Brasil tiene nueve.',g:[['Brasil',452411,'c0'],['Perú',50185,'hi'],['Resto (11 países)',null,'c10']]}
       ]}
   };
   const LATAM=[452411,156239,99940,86668,80540,50185,37289,11937,11434,8619,6848,3182,2976];
@@ -752,14 +810,15 @@ function guess(host,{q,truth,unit='%',note,max=100}){
     m.g.forEach(g=>{if(!g.c)g.c=m.plain||PAL[pi++%PAL.length]});
     // los grupos de porcentajes puros se escalan al total
     if(m.approx){const s=m.g.reduce((a,g)=>a+g.v,0);m.g.forEach(g=>{g.share=g.v/s;g.v=g.share*u.total;g.est=true})}
-    m.g.forEach(g=>{g.col=/^c\d+$/.test(g.c)?`var(--${g.c})`:`var(--${g.c})`});
+    m.g.forEach(g=>{g.col=`var(--${g.c})`});
+    if(m.ramp)m.g.forEach((g,i)=>g.col=`color-mix(in srgb,var(--s1) ${Math.round(100-i/(m.g.length-1)*100)}%,var(--s3))`);
   }));
   U.pub.m[1].g[2].v=U.pub.total-452411-50185;
 
   const host=$('#tiles'),tiles=[];
   for(let i=0;i<N;i++){const e=document.createElement('i');host.appendChild(e);tiles.push(e)}
   const lbs=[];
-  let uk='est',mk='gestion',timer,curM,curU,hov=null;
+  let uk='est',mk='gestion',timer,curM,curU,hov=null,pinned=null;
   const CAP={est:'estudiantes de pregrado en 2025',doc:'docentes de pregrado en 2025',pub:'publicaciones en Scopis, América Latina 2021–2025'.replace('Scopis','Scopus')};
   function focus(gi){if(gi===hov)return;hov=gi;tiles.forEach(t=>t.style.opacity=(gi==null||t._gi===gi)?1:.18);
     if(gi==null)setBig(curU.total,CAP[uk],500);else{const g=curM.g[gi];setBig(g.v,`${curU.unit} · ${g.l}`,450)}}
@@ -768,7 +827,7 @@ function guess(host,{q,truth,unit='%',note,max=100}){
     let rem=N-fl.reduce((a,b)=>a+b,0);raw.map((r,i)=>[r-fl[i],i]).sort((a,b)=>b[0]-a[0]).slice(0,rem).forEach(([,i])=>fl[i]++);return fl}
 
   function render(first){
-    const u=U[uk],m=u.m.find(x=>x.k===mk),W=host.clientWidth,s=W<560?8:W<820?10:12,p=s+2;
+    const u=U[uk],m=u.m.find(x=>x.k===mk),W=host.clientWidth,s=W<820?10:12,p=s+2;
     host.style.setProperty('--s',s+'px');
     const cnt=alloc(m.g),gut=26,LH=40;
     // empaquetado por estantes
@@ -787,20 +846,23 @@ function guess(host,{q,truth,unit='%',note,max=100}){
         el.style.transform=`translate(${b.x+(k%b.cols)*p}px,${b.y+LH+Math.floor(k/b.cols)*p}px)`;
         el.style.backgroundColor=g.col;
         el._gi=b.gi;el._tip=`<b>${g.l}</b><br>${g.est?pct(g.share,1):pct(g.v,u.total)}${g.est?'':' · '+fmt(g.v)+' '+u.unit}`}});
-    host.style.height=H+'px';curM=m;curU=u;hov=null;tiles.forEach(t=>t.style.opacity=1);
+    host.style.height=H+'px';curM=m;curU=u;hov=null;pinned=null;$('#unpin').hidden=true;tiles.forEach(t=>t.style.opacity=1);
     setBig(u.total,CAP[uk]);
     // etiquetas
     lbs.splice(0).forEach(l=>{l.classList.add('out');setTimeout(()=>l.remove(),400)});
-    blocks.forEach(b=>{const g=m.g[b.gi],l=document.createElement('div');l.className='lb out';l.style.width=(b.slot-6)+'px';
+    blocks.forEach(b=>{const g=m.g[b.gi],l=document.createElement('button');l.className='lb out';l.dataset.gi=b.gi;l.setAttribute('aria-pressed','false');l.onclick=()=>pin(b.gi);l.style.width=(b.slot-6)+'px';
       l.style.transform=`translate(${b.x}px,${b.y}px)`;
       l.innerHTML=`<b>${g.l}</b><span>${g.est?pct(g.share,1):pct(g.v,u.total)}</span>`;host.appendChild(l);lbs.push(l);
       setTimeout(()=>l.classList.remove('out'),first?0:500)});
     $('#story').textContent=m.story;
     $('#tileSrc').innerHTML=`1 cuadro ≈ ${fmt(per)} ${u.unit} · ${u.src}${m.note?' · '+m.note:''}`;
   }
+  function pin(gi){pinned=pinned===gi?null:gi;hov=undefined;focus(pinned);
+    lbs.forEach(l=>l.setAttribute('aria-pressed',String(+l.dataset.gi===pinned&&pinned!=null)));$('#unpin').hidden=pinned==null}
+  $('#unpin').onclick=()=>pin(pinned);
   host.addEventListener('mousemove',e=>{if(e.target._tip){showTip(e.target._tip,e);focus(e.target._gi)}});
-  host.addEventListener('mouseleave',()=>{hideTip();focus(null)});
-  host.addEventListener('click',e=>{if(e.target._tip)focus(hov===e.target._gi?null:e.target._gi)});
+  host.addEventListener('mouseleave',()=>{hideTip();hov=undefined;focus(pinned)});
+  host.addEventListener('click',e=>{if(e.target._tip){showTip(e.target._tip,e);setTimeout(hideTip,4000);pin(e.target._gi)}});
 
   function buildMeasures(){const u=U[uk];const box=$('#meas');box.innerHTML='';
     u.m.forEach(m=>{const b=document.createElement('button');b.textContent=m.n;b.setAttribute('aria-pressed',m.k===mk);b.onclick=()=>{mk=m.k;box.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};box.appendChild(b)})}
@@ -828,19 +890,23 @@ function guess(host,{q,truth,unit='%',note,max=100}){
   ];
   const T=$('#talk');let i=0;
   const glyph=document.querySelector('.brand svg').outerHTML;
-  T.innerHTML=`<div class="prog"></div><div class="top"><span>${glyph}La universidad en cifras</span><button class="x" id="tx">Esc · salir</button></div><div class="stage" id="st"></div><div class="bot"><span id="ts"></span><span id="tn"></span></div>`;
+  T.innerHTML=`<div class="prog"></div><div class="top"><span>${glyph}La universidad en cifras</span><button class="x" id="tx">Esc · salir</button></div><div class="stage" id="st"></div><div class="bot"><span id="ts"></span><span class="mid">Visualización no oficial</span><button class="nv" id="tp">← Anterior</button><button class="nv" id="tnx">Siguiente →</button><span id="tn"></span></div>`;
   function show(n){i=Math.max(0,Math.min(S.length-1,n));const d=S[i];
     const st=$('#st');st.style.animation='none';st.offsetHeight;st.style.animation='';
     st.innerHTML=`<div class="k">${String(i+1).padStart(2,'0')} · ${d.k}</div><div class="b ${d.sm?'sm':''} num">${d.b}</div><div class="c">${d.c}</div>`;
-    $('#ts').textContent=d.s;$('#tn').textContent=`${String(i+1).padStart(2,'0')} / ${S.length}`;
+    $('#ts').textContent=d.s;$('#tp').disabled=i===0;$('#tnx').disabled=i===S.length-1;$('#tn').textContent=`${String(i+1).padStart(2,'0')} / ${S.length}`;
     T.querySelector('.prog').style.width=((i+1)/S.length*100)+'%'}
-  function open(){T.classList.add('open');document.body.style.overflow='hidden';show(0);hideTip()}
-  function close(){T.classList.remove('open');document.body.style.overflow=''}
+  let prev=null;
+  function open(){prev=document.activeElement;T.classList.add('open');document.body.style.overflow='hidden';show(0);hideTip();T.tabIndex=-1;T.focus({preventScroll:true})}
+  function close(){T.classList.remove('open');document.body.style.overflow='';if(prev&&prev.focus)prev.focus()}
   $('#present').onclick=open;$('#tx').onclick=e=>{e.stopPropagation();close()};
-  T.addEventListener('click',e=>{if(e.target.closest('.x'))return;(e.clientX>innerWidth*.35)?show(i+1):show(i-1)});
+  $('#tp').onclick=()=>show(i-1);$('#tnx').onclick=()=>show(i+1);
+  T.addEventListener('click',e=>{if(e.target.closest('.x,.nv'))return;show(i+1)});
   let sx=null;T.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
   T.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40){e.preventDefault();show(i+(d<0?1:-1))}sx=null});
   addEventListener('keydown',e=>{if(!T.classList.contains('open'))return;
+    if(e.key==='Tab'){e.preventDefault();const f=[...T.querySelectorAll('button:not(:disabled)')],k=f.indexOf(document.activeElement);f[(k+(e.shiftKey?-1:1)+f.length)%f.length].focus();return}
+    if(e.target.closest&&e.target.closest('#talk button')&&(e.key===' '||e.key==='Enter'))return;
     if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(i+1)}
     else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(i-1)}
     else if(e.key==='Escape')close();else if(e.key==='Home')show(0);else if(e.key==='End')show(S.length-1)});
@@ -852,7 +918,9 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.reveal,.card').forEach(el=>io.observe(el));
 const links=[...document.querySelectorAll('nav a.lk')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
 function onScroll(){const h=document.documentElement;$('#bar').style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+'%';
-  let cur=-1;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.35)cur=i});links.forEach((a,i)=>a.classList.toggle('on',i===cur))}
+  let cur=-1;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.35)cur=i});links.forEach((a,i)=>a.classList.toggle('on',i===cur));
+  if(cur!==lastCur&&links[cur]){lastCur=cur;const a=links[cur],c=a.parentElement,r=a.getBoundingClientRect(),cr=c.getBoundingClientRect();c.scrollBy({left:r.left-cr.left-(cr.width-r.width)/2,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}
+let lastCur=-2;
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 </script>
 </body>
