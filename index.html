@@ -149,8 +149,11 @@ svg text{font:11px var(--mono);fill:var(--mute)}
 .ctrl{display:flex;flex-wrap:wrap;gap:0 4px;align-items:center}
 .ctrl .lab2{font:400 11px var(--mono);color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-right:8px}
 .story{font:400 clamp(26px,4.4vw,44px)/1.08 var(--serif);letter-spacing:-.02em;margin:18px 0 26px;min-height:2.2em;max-width:760px;transition:opacity .3s}
+.live{position:sticky;top:52px;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);display:flex;align-items:baseline;gap:12px;padding:8px 0;margin-bottom:10px;border-bottom:1px solid var(--line)}
+.live #liveN{font:400 40px/1 var(--serif);letter-spacing:-.03em}
+.live #liveC{font:400 12px var(--mono);color:var(--mute)}
 .tiles{position:relative;width:100%;transition:height .9s cubic-bezier(.3,.8,.2,1)}
-.tiles i{position:absolute;left:0;top:0;width:var(--s);height:var(--s);border-radius:2px;transition:transform .9s cubic-bezier(.3,.8,.2,1),background-color .5s;will-change:transform}
+.tiles i{position:absolute;left:0;top:0;width:var(--s);height:var(--s);border-radius:2px;transition:transform .9s cubic-bezier(.3,.8,.2,1),background-color .5s,opacity .25s;will-change:transform}
 .tiles i:hover{outline:2px solid var(--ink);z-index:2}
 .tiles .lb{position:absolute;left:0;top:0;font:400 11px/1.25 var(--mono);color:var(--ink);transition:opacity .4s;pointer-events:none}
 .tiles .lb b{display:block;font:500 12px var(--sans);letter-spacing:-.005em}
@@ -199,7 +202,7 @@ footer li{margin-bottom:6px}
   <p class="lead">Versión interactiva del informe del Ministerio de Educación sobre la educación universitaria en el Perú. Mueve los cuadros, filtra y adivina antes de ver el dato.</p>
   <div class="by"><svg viewBox="0 0 258 258" aria-hidden="true"><path d="M118.238 16.262C111.482 11.4 99.9003 5.62505 92.2517 3.26931C74.9754 -2.31209 61.2312 0.473844 52.1188 3.50057C34.3839 9.3909 23.1637 17.3398 12.9798 32.0237C-3.018 54.7384 -1.30627 92.0001 17.4396 113.282C21.6313 118.385 23.9203 117.58 40.6062 105.794C41.1838 105.243 38.9626 101.57 35.6118 97.3194C28.0736 87.6862 23.7841 70.2632 26.209 60.5011C34.074 29.8239 72.1683 13.8835 96.3841 31.0488C101.735 34.7695 118.578 50.1432 133.719 65.2112C156.435 87.3932 163.188 92.535 168.887 92.0615C174.586 91.588 176.608 89.6589 177.27 83.5096C178.226 76.8049 175.724 72.8474 162.814 60.893C154.116 52.642 147.113 45.2566 147.134 43.8571C147.151 42.7375 153.199 38.0697 160.665 33.7035C208.922 4.47877 259.519 64.8793 219.089 103.462C213.891 108.422 204.705 113.602 198.705 115.191C191.85 116.767 160.245 117.687 120.978 117.092C47.5669 115.979 43.5706 116.758 23.9629 133.539C-1.12747 155.276 -7.39134 192.976 9.54962 220.67C31.485 256.839 79.721 266.529 114.252 241.576L126.916 232.249L141.283 241.986C164.663 258.018 183.68 261.387 206.842 254.179C253.172 239.483 271.118 182.082 241.827 143.002C238.477 138.752 236.774 138.446 232.187 140.616C218.126 148.242 218.419 147.686 226.416 164.606C232.48 177.576 233.542 182.632 231.971 192.407C227.614 216.978 208.584 233.207 184.682 232.845C166.187 232.564 160.267 228.835 126.619 195.569C108.947 178.502 92.6562 164.257 90.3799 164.222C86.1118 164.158 76.8749 172.697 76.8113 176.895C76.7943 178.015 84.341 187.088 93.8711 196.752L110.969 214.089L100.607 221.771C64.0584 248.374 13.049 215.124 25.6449 172.76C29.5392 159.94 42.8446 145.864 55.4323 141.575C60.2992 139.689 90.1929 139.023 130.598 139.635C204.863 140.762 213.705 139.496 230.998 125.2C282.576 83.4269 254.198 2.92565 187.611 2.19579C168.262 1.90235 157.675 5.66133 139.549 18.5449L130.342 25.1245L118.238 16.262Z"/></svg><span>by Crafter · basado en el informe del Minedu · inspirado en el post de Hernán De La Cruz Cruzado</span></div>
   <div class="big num" id="counter">0</div>
-  <p class="bigcap">estudiantes de pregrado en 2025</p>
+  <p class="bigcap" id="bigcap">estudiantes de pregrado en 2025</p>
   <p class="src">SIRIES, corte 31/08/2026 · Elaboración: Minedu, Digesu, Dipoda</p>
 </header>
 
@@ -212,6 +215,7 @@ footer li{margin-bottom:6px}
   </div>
   <div class="ctrl"><span class="lab2">Medir por</span><div class="seg" id="meas" role="group"></div></div>
   <div class="story" id="story"></div>
+  <div class="live" id="live"><span class="num" id="liveN">0</span><span id="liveC"></span></div>
   <div class="tiles" id="tiles"></div>
   <p class="src plain mono" id="tileSrc"></p>
 </div></section>
@@ -552,8 +556,11 @@ function guess(host,{q,truth,unit='%',note,max=100}){
 
 /* ============ hero ============ */
 (function(){
-  const el=$('#counter'),T=1525560,t0=performance.now();
-  (function tick(t){const p=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-p,3);el.textContent=fmt(T*e);if(p<1)requestAnimationFrame(tick)})(t0);
+  const el=$('#counter');let cur=0,raf;
+  window.setBig=(v,cap,dur=800)=>{cancelAnimationFrame(raf);const a=cur,t0=performance.now();
+    $('#bigcap').textContent=cap;$('#liveC').textContent=cap;
+    (function tick(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);cur=a+(v-a)*e;el.textContent=$('#liveN').textContent=fmt(cur);if(p<1)raf=requestAnimationFrame(tick)})(t0)};
+  window.setBig(1525560,'estudiantes de pregrado en 2025',1400);
 })();
 
 /* ============ oferta ============ */
@@ -749,7 +756,10 @@ function guess(host,{q,truth,unit='%',note,max=100}){
   const host=$('#tiles'),tiles=[];
   for(let i=0;i<N;i++){const e=document.createElement('i');host.appendChild(e);tiles.push(e)}
   const lbs=[];
-  let uk='est',mk='gestion',timer;
+  let uk='est',mk='gestion',timer,curM,curU,hov=null;
+  const CAP={est:'estudiantes de pregrado en 2025',doc:'docentes de pregrado en 2025',pub:'publicaciones en Scopis, América Latina 2021–2025'.replace('Scopis','Scopus')};
+  function focus(gi){if(gi===hov)return;hov=gi;tiles.forEach(t=>t.style.opacity=(gi==null||t._gi===gi)?1:.18);
+    if(gi==null)setBig(curU.total,CAP[uk],500);else{const g=curM.g[gi];setBig(g.v,`${curU.unit} · ${g.l}`,450)}}
 
   function alloc(g){const tot=g.reduce((a,x)=>a+x.v,0),raw=g.map(x=>x.v/tot*N),fl=raw.map(Math.floor);
     let rem=N-fl.reduce((a,b)=>a+b,0);raw.map((r,i)=>[r-fl[i],i]).sort((a,b)=>b[0]-a[0]).slice(0,rem).forEach(([,i])=>fl[i]++);return fl}
@@ -773,8 +783,9 @@ function guess(host,{q,truth,unit='%',note,max=100}){
         el.style.transitionDelay=first?'0ms':Math.min(k*3,420)+'ms';
         el.style.transform=`translate(${b.x+(k%b.cols)*p}px,${b.y+LH+Math.floor(k/b.cols)*p}px)`;
         el.style.backgroundColor=g.col;
-        el._tip=`<b>${g.l}</b><br>${g.est?pct(g.share,1):pct(g.v,u.total)}${g.est?'':' · '+fmt(g.v)+' '+u.unit}`}});
-    host.style.height=H+'px';
+        el._gi=b.gi;el._tip=`<b>${g.l}</b><br>${g.est?pct(g.share,1):pct(g.v,u.total)}${g.est?'':' · '+fmt(g.v)+' '+u.unit}`}});
+    host.style.height=H+'px';curM=m;curU=u;hov=null;tiles.forEach(t=>t.style.opacity=1);
+    setBig(u.total,CAP[uk]);
     // etiquetas
     lbs.splice(0).forEach(l=>{l.classList.add('out');setTimeout(()=>l.remove(),400)});
     blocks.forEach(b=>{const g=m.g[b.gi],l=document.createElement('div');l.className='lb out';l.style.width=(b.slot-6)+'px';
@@ -784,8 +795,9 @@ function guess(host,{q,truth,unit='%',note,max=100}){
     $('#story').textContent=m.story;
     $('#tileSrc').innerHTML=`1 cuadro ≈ ${fmt(per)} ${u.unit} · ${u.src}${m.note?' · '+m.note:''}`;
   }
-  host.addEventListener('mousemove',e=>{if(e.target._tip)showTip(e.target._tip,e);else hideTip()});
-  host.addEventListener('mouseleave',hideTip);
+  host.addEventListener('mousemove',e=>{if(e.target._tip){showTip(e.target._tip,e);focus(e.target._gi)}});
+  host.addEventListener('mouseleave',()=>{hideTip();focus(null)});
+  host.addEventListener('click',e=>{if(e.target._tip)focus(hov===e.target._gi?null:e.target._gi)});
 
   function buildMeasures(){const u=U[uk];const box=$('#meas');box.innerHTML='';
     u.m.forEach(m=>{const b=document.createElement('button');b.textContent=m.n;b.setAttribute('aria-pressed',m.k===mk);b.onclick=()=>{mk=m.k;box.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};box.appendChild(b)})}
