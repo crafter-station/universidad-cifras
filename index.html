@@ -843,21 +843,22 @@ function guess(host,{q,truth,unit='%',note,max=100}){
   function render(first){
     const u=U[uk],m=u.m.find(x=>x.k===mk),W=host.clientWidth,s=W<820?10:12,p=s+2;
     host.style.setProperty('--s',s+'px');
-    const cnt=alloc(m.g),gut=26,LH=40;
+    const cnt=alloc(m.g),gut=26;
     // empaquetado por estantes
     let x=0,y=0,shelfH=0;const blocks=[];
     m.g.forEach((g,gi)=>{const n=cnt[gi];if(!n)return;
       let cols=Math.max(1,Math.ceil(Math.sqrt(n*1.5)));cols=Math.min(cols,Math.floor(W/p));
       const rows=Math.ceil(n/cols),bw=cols*p,slot=Math.max(bw,96);
       if(x>0&&x+slot>W){x=0;y+=shelfH+gut;shelfH=0}
-      blocks.push({gi,n,cols,x,y,slot});shelfH=Math.max(shelfH,LH+rows*p);x+=slot+gut});
+      const lines=Math.max(1,Math.ceil(g.l.length*6.8/(slot-8))),lh=lines*16+24;
+      blocks.push({gi,n,cols,x,y,slot,lh});shelfH=Math.max(shelfH,lh+rows*p);x+=slot+gut});
     const H=y+shelfH;
     // posiciones de cuadros
     let t=0;const per=u.total/N;
     blocks.forEach(b=>{const g=m.g[b.gi];
       for(let k=0;k<b.n;k++){const el=tiles[t++];
         el.style.transitionDelay=first?'0ms':Math.min(k*3,420)+'ms';
-        el.style.transform=`translate(${b.x+(k%b.cols)*p}px,${b.y+LH+Math.floor(k/b.cols)*p}px)`;
+        el.style.transform=`translate(${b.x+(k%b.cols)*p}px,${b.y+b.lh+Math.floor(k/b.cols)*p}px)`;
         el.style.backgroundColor=g.col;
         el._gi=b.gi;el._tip=`<b>${g.l}</b><br>${g.est?pct(g.share,1):pct(g.v,u.total)}${g.est?'':' · '+fmt(g.v)+' '+u.unit}`}});
     host.style.height=H+'px';curM=m;curU=u;hov=null;pinned=null;$('#unpin').hidden=true;tiles.forEach(t=>t.style.opacity=1);

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modelos de menos texto</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF4EC;--ink:#0E1F18;--mute:#4F6B5D;--line:#C9D7CB;--soft:#DCE7DB;--pub:#C2492B;--pri:#173F31;--serif:"Instrument Serif",Georgia,serif;--sans:Geist,system-ui,sans-serif;--mono:"Geist Mono",monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--sans)}
+.top{padding:20px 16px;max-width:1280px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.top h1{font:400 28px var(--serif);margin:0;flex:1}
+button.t{border:1px solid var(--line);background:transparent;border-radius:99px;padding:8px 14px;font:400 12px var(--mono);cursor:pointer;min-height:36px}
+button.t[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1280px;margin:0 auto;padding:0 16px 60px}
+@media(max-width:1000px){.cols{grid-template-columns:1fr}}
+.m{border:1px solid var(--line);border-radius:6px;padding:22px;background:#F6FAF4;min-width:0}
+.m>.tag{font:400 12px var(--mono);color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.m>.desc{font-size:14px;color:var(--mute);margin:0 0 18px}
+.k{font:400 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+body.nok .k{display:none}
+.hero h2{font:400 40px/.98 var(--serif);letter-spacing:-.03em;margin:8px 0 8px}.hero h2 em{color:var(--pub)}
+.hero p{margin:0;color:var(--mute);font-size:15px}
+.big{font:400 64px/1 var(--serif);letter-spacing:-.035em;margin:16px 0 2px}
+.cap{color:var(--mute);font-size:14px;margin:0}
+.c{text-align:center}.c .hint{display:inline-block;margin-top:14px;border:1px solid var(--line);border-radius:99px;padding:6px 14px;font:400 12px var(--mono)}
+hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+.sec h3{font:400 30px/1.05 var(--serif);letter-spacing:-.02em;margin:6px 0 6px}
+.sec .intro{color:var(--mute);margin:0 0 14px;font-size:15px}
+.card{border-top:1px solid var(--line);padding-top:14px}
+.card h4{font:400 22px/1.15 var(--serif);margin:0 0 4px}
+.card .sub{font-size:14px;color:var(--mute);margin:0 0 12px}
+.stack{display:flex;height:34px;gap:2px}.stack div{display:flex;align-items:center;justify-content:center;font:400 12px var(--mono);color:#F6FAF4}
+.src{font:400 12px var(--mono);color:var(--mute);margin-top:8px}
+.stat{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}.stat b{font:400 54px/1 var(--serif);letter-spacing:-.03em;color:var(--pri)}
+details{margin-top:10px;font-size:14px;color:var(--mute)}summary{cursor:pointer;font:400 12px var(--mono);color:var(--ink);min-height:32px;display:flex;align-items:center}
+details p{margin:6px 0}
+.old{color:var(--mute);font-size:13px}
+</style></head><body>
+<div class="top"><h1>Tres modelos para que se entienda más rápido</h1>
+  <button class="t" id="kk" aria-pressed="true">Etiquetas pequeñas: con</button></div>
+<div class="cols">
+
+<!-- MODELO 1: TODO -->
+<div class="m"><div class="tag">Modelo 1 · Todo</div>
+<p class="desc">Una cifra grande + una frase por gráfico. El detalle queda plegado. Inicio centrado.</p>
+<div class="hero c"><div class="k">Informe Minedu · 2026</div>
+<h2>La universidad <em>en cifras</em></h2>
+<p>Versión no oficial. Toca los cuadros para explorar.</p>
+<div class="big">1 525 560</div><p class="cap">estudiantes de pregrado</p>
+<span class="hint">↓ Desliza para empezar</span></div>
+<hr>
+<div class="sec"><div class="k">Matrícula</div><h3>Los estudiantes</h3>
+<div class="card"><div class="stat"><b>3 de 4</b><span>estudian en una universidad privada</span></div>
+<div class="stack"><div style="flex:77;background:#173F31">Privada 77 %</div><div style="flex:23;background:#C2492B"></div></div>
+<p class="src">Pública 23 %</p>
+<details><summary>Ver detalle y fuente</summary><p>Cuatro universidades privadas concentran el 41 % de la matrícula.</p><p>Fuente: SIRIES, corte 31/08/2026.</p></details></div></div></div>
+
+<!-- MODELO 2: SOLO TEXTO -->
+<div class="m"><div class="tag">Modelo 2 · Solo texto</div>
+<p class="desc">Mismas tarjetas de hoy, pero con títulos cortos, una frase de entrada y palabras simples.</p>
+<div class="hero"><div class="k">Informe Minedu · 2026</div>
+<h2>La universidad <em>en cifras</em></h2>
+<p>Versión no oficial del informe del Minedu. Toca los cuadros para explorar.</p>
+<div class="big">1 525 560</div><p class="cap">estudiantes de pregrado</p></div>
+<hr>
+<div class="sec"><div class="k">Matrícula</div><h3>Los estudiantes</h3>
+<p class="intro">3 de cada 4 estudian en una privada.</p>
+<div class="card"><h4>Estudian más en privadas</h4><p class="sub">Estudiantes de pregrado, 2025.</p>
+<div class="stack"><div style="flex:77;background:#173F31">Privada 77 %</div><div style="flex:23;background:#C2492B"></div></div>
+<p class="src">Fuente: SIRIES</p></div>
+<p class="old">Antes: «El 81 % de las públicas licenciadas está fuera de Lima; el 55 % de las privadas, en Lima» → Ahora: «Las públicas están fuera de Lima».</p></div></div>
+
+<!-- MODELO 3: TEXTO + CENTRAR -->
+<div class="m"><div class="tag">Modelo 3 · Texto + centrar inicio</div>
+<p class="desc">Modelo 2 con el inicio centrado y una instrucción clara. Es el cambio más rápido de probar.</p>
+<div class="hero c"><div class="k">Informe Minedu · 2026</div>
+<h2>La universidad <em>en cifras</em></h2>
+<p>Versión no oficial del informe del Minedu.</p>
+<div class="big">1 525 560</div><p class="cap">estudiantes de pregrado</p>
+<span class="hint">Toca los cuadros ↓</span></div>
+<hr>
+<div class="sec"><div class="k">Matrícula</div><h3>Los estudiantes</h3>
+<p class="intro">3 de cada 4 estudian en una privada.</p>
+<div class="card"><h4>Estudian más en privadas</h4><p class="sub">Estudiantes de pregrado, 2025.</p>
+<div class="stack"><div style="flex:77;background:#173F31">Privada 77 %</div><div style="flex:23;background:#C2492B"></div></div>
+<p class="src">Fuente: SIRIES</p></div></div></div>
+
+</div>
+<script>
+const b=document.getElementById('kk');b.onclick=()=>{const on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',!on);document.body.classList.toggle('nok',on);b.textContent='Etiquetas pequeñas: '+(on?'sin':'con')}
+</script></body></html>
