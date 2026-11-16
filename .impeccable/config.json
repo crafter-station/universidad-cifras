@@ -29,6 +29,15 @@
         ],
         "createdAt": "2026-11-16T17:14:26.989Z",
         "reason": "False positive: detector reads h1-h4 vs body only; real scale is 120px h1, 60px h2, 25px card titles, 16px body (verified in CSS)"
+      },
+      {
+        "rule": "kicker-above-heading",
+        "value": "*",
+        "files": [
+          "previews/modelos.html"
+        ],
+        "createdAt": "2026-11-16T17:23:19.559Z",
+        "reason": "Demo page: the kickers are deliberately shown so the user can compare with/without; not shipped design"
       }
     ]
   }

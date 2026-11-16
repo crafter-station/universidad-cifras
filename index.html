@@ -59,7 +59,14 @@ nav a.lk.on{background:var(--ink);color:var(--bg)}
 #present{margin-left:4px}
 
 /* hero */
-.hero{padding:76px 0 24px}
+.hero{padding:76px 0 24px;text-align:center}
+.hero .lead{margin-left:auto;margin-right:auto}
+.hero .by{justify-content:center}
+.hint{display:inline-block;margin-top:18px;border:1px solid var(--line);border-radius:99px;padding:8px 16px;font:400 12px var(--mono);text-decoration:none;min-height:36px}
+.hint:hover{background:var(--ink);color:var(--bg)}
+details{font-size:14px;color:var(--mute);margin-top:12px;max-width:68ch}
+summary{cursor:pointer;font:400 12px var(--mono);color:var(--ink);min-height:32px;display:flex;align-items:center}
+details p{margin:6px 0}
 .kicker{font:400 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 h1{font:400 clamp(52px,10vw,120px)/.94 var(--serif);letter-spacing:-.03em;margin:16px 0 20px}
 h1 em{font-style:italic;color:var(--pub)}
@@ -175,7 +182,7 @@ section.guessing .spoil{filter:blur(7px);user-select:none;transition:filter .5s}
 .tiles .lb span{color:var(--mute)}
 .tiles .lb.out{opacity:0;pointer-events:none}
 
-@media(pointer:coarse){nav a.lk,.navbtn,.seg button,.legend button,.guess button,#talk .x,#talk .nv{min-height:44px}nav a.lk{display:inline-flex;align-items:center}.live #unpin{min-height:44px}.tiles .lb{min-height:44px}}
+@media(pointer:coarse){summary,.hint{min-height:44px}nav a.lk,.navbtn,.seg button,.legend button,.guess button,#talk .x,#talk .nv{min-height:44px}nav a.lk{display:inline-flex;align-items:center}.live #unpin{min-height:44px}.tiles .lb{min-height:44px}}
 #tip{position:fixed;z-index:200;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:var(--r);max-width:240px;opacity:0;transition:opacity .12s;line-height:1.4}
 footer{padding:56px 0 80px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
 footer h4{color:var(--ink);margin:0 0 10px;font:500 14px var(--sans)}
@@ -218,17 +225,18 @@ footer li{margin-bottom:6px}
 <header class="hero wrap" id="top">
   <div class="kicker">Minedu · 2.ª edición · noviembre 2026</div>
   <h1>La universidad<br><em>en cifras</em></h1>
-  <p class="lead">Versión interactiva y <b>no oficial</b> del informe del Ministerio de Educación sobre la educación universitaria en el Perú. Mueve los cuadros, filtra y adivina antes de ver el dato.</p>
-  <div class="by"><svg viewBox="0 0 258 258" aria-hidden="true"><path d="M118.238 16.262C111.482 11.4 99.9003 5.62505 92.2517 3.26931C74.9754 -2.31209 61.2312 0.473844 52.1188 3.50057C34.3839 9.3909 23.1637 17.3398 12.9798 32.0237C-3.018 54.7384 -1.30627 92.0001 17.4396 113.282C21.6313 118.385 23.9203 117.58 40.6062 105.794C41.1838 105.243 38.9626 101.57 35.6118 97.3194C28.0736 87.6862 23.7841 70.2632 26.209 60.5011C34.074 29.8239 72.1683 13.8835 96.3841 31.0488C101.735 34.7695 118.578 50.1432 133.719 65.2112C156.435 87.3932 163.188 92.535 168.887 92.0615C174.586 91.588 176.608 89.6589 177.27 83.5096C178.226 76.8049 175.724 72.8474 162.814 60.893C154.116 52.642 147.113 45.2566 147.134 43.8571C147.151 42.7375 153.199 38.0697 160.665 33.7035C208.922 4.47877 259.519 64.8793 219.089 103.462C213.891 108.422 204.705 113.602 198.705 115.191C191.85 116.767 160.245 117.687 120.978 117.092C47.5669 115.979 43.5706 116.758 23.9629 133.539C-1.12747 155.276 -7.39134 192.976 9.54962 220.67C31.485 256.839 79.721 266.529 114.252 241.576L126.916 232.249L141.283 241.986C164.663 258.018 183.68 261.387 206.842 254.179C253.172 239.483 271.118 182.082 241.827 143.002C238.477 138.752 236.774 138.446 232.187 140.616C218.126 148.242 218.419 147.686 226.416 164.606C232.48 177.576 233.542 182.632 231.971 192.407C227.614 216.978 208.584 233.207 184.682 232.845C166.187 232.564 160.267 228.835 126.619 195.569C108.947 178.502 92.6562 164.257 90.3799 164.222C86.1118 164.158 76.8749 172.697 76.8113 176.895C76.7943 178.015 84.341 187.088 93.8711 196.752L110.969 214.089L100.607 221.771C64.0584 248.374 13.049 215.124 25.6449 172.76C29.5392 159.94 42.8446 145.864 55.4323 141.575C60.2992 139.689 90.1929 139.023 130.598 139.635C204.863 140.762 213.705 139.496 230.998 125.2C282.576 83.4269 254.198 2.92565 187.611 2.19579C168.262 1.90235 157.675 5.66133 139.549 18.5449L130.342 25.1245L118.238 16.262Z"/></svg><span>by Liz Riveros · Crafter Research · basado en el informe del Minedu · inspirado en el post de Hernán De La Cruz Cruzado</span></div>
+  <p class="lead">Versión <b>no oficial</b> del informe del Ministerio de Educación sobre la universidad en el Perú.</p>
+  <div class="by"><svg viewBox="0 0 258 258" aria-hidden="true"><path d="M118.238 16.262C111.482 11.4 99.9003 5.62505 92.2517 3.26931C74.9754 -2.31209 61.2312 0.473844 52.1188 3.50057C34.3839 9.3909 23.1637 17.3398 12.9798 32.0237C-3.018 54.7384 -1.30627 92.0001 17.4396 113.282C21.6313 118.385 23.9203 117.58 40.6062 105.794C41.1838 105.243 38.9626 101.57 35.6118 97.3194C28.0736 87.6862 23.7841 70.2632 26.209 60.5011C34.074 29.8239 72.1683 13.8835 96.3841 31.0488C101.735 34.7695 118.578 50.1432 133.719 65.2112C156.435 87.3932 163.188 92.535 168.887 92.0615C174.586 91.588 176.608 89.6589 177.27 83.5096C178.226 76.8049 175.724 72.8474 162.814 60.893C154.116 52.642 147.113 45.2566 147.134 43.8571C147.151 42.7375 153.199 38.0697 160.665 33.7035C208.922 4.47877 259.519 64.8793 219.089 103.462C213.891 108.422 204.705 113.602 198.705 115.191C191.85 116.767 160.245 117.687 120.978 117.092C47.5669 115.979 43.5706 116.758 23.9629 133.539C-1.12747 155.276 -7.39134 192.976 9.54962 220.67C31.485 256.839 79.721 266.529 114.252 241.576L126.916 232.249L141.283 241.986C164.663 258.018 183.68 261.387 206.842 254.179C253.172 239.483 271.118 182.082 241.827 143.002C238.477 138.752 236.774 138.446 232.187 140.616C218.126 148.242 218.419 147.686 226.416 164.606C232.48 177.576 233.542 182.632 231.971 192.407C227.614 216.978 208.584 233.207 184.682 232.845C166.187 232.564 160.267 228.835 126.619 195.569C108.947 178.502 92.6562 164.257 90.3799 164.222C86.1118 164.158 76.8749 172.697 76.8113 176.895C76.7943 178.015 84.341 187.088 93.8711 196.752L110.969 214.089L100.607 221.771C64.0584 248.374 13.049 215.124 25.6449 172.76C29.5392 159.94 42.8446 145.864 55.4323 141.575C60.2992 139.689 90.1929 139.023 130.598 139.635C204.863 140.762 213.705 139.496 230.998 125.2C282.576 83.4269 254.198 2.92565 187.611 2.19579C168.262 1.90235 157.675 5.66133 139.549 18.5449L130.342 25.1245L118.238 16.262Z"/></svg><span>by Liz Riveros · Crafter Research</span></div>
   <div class="big num" id="counter">0</div>
   <p class="bigcap" id="bigcap">estudiantes de pregrado en 2025</p>
   <p class="src">SIRIES, corte 31/08/2026 · Elaboración: Minedu, Digesu, Dipoda</p>
+  <a class="hint" href="#cuadros">Toca los cuadros ↓</a>
 </header>
 
 <section id="cuadros"><div class="wrap">
   <div class="kicker">Mismo universo, otra medida</div>
   <h2>Cada cuadro es un grupo de personas</h2>
-  <p class="intro">Elige qué contar y cómo medirlo. Los cuadros no aparecen ni desaparecen: se reacomodan. Es la idea de Land vs People aplicada a la universidad. Aquí está el panorama general; más abajo cada tema se explica con detalle.</p>
+  <p class="intro">Elige qué contar y cómo medirlo: los cuadros se reacomodan.</p>
   <div class="ctrl"><span class="lab2">Contar</span>
     <div class="seg" id="uni" role="group" aria-label="Contar"><button aria-pressed="true" data-k="est">Estudiantes</button><button aria-pressed="false" data-k="doc">Docentes</button><button aria-pressed="false" data-k="pub">Publicaciones</button></div>
   </div>
@@ -243,7 +251,7 @@ footer li{margin-bottom:6px}
 <section id="oferta"><div class="wrap">
   <div class="kicker">Universidades</div>
   <h2>La oferta</h2>
-  <p class="intro">Tras el licenciamiento, el Perú tiene 105 universidades licenciadas. Pero la oferta pública creció rápido: 69 de las 122 universidades públicas se crearon entre 2022 y 2026.</p>
+  <p class="intro">El Perú tiene 105 universidades licenciadas. Y 69 de las 122 públicas se crearon entre 2022 y 2026.</p>
 
   <div class="grid g3 reveal" style="margin-bottom:14px">
     <div class="card"><div class="stat num">105</div><div class="statcap">universidades licenciadas: 53 privadas y 52 públicas</div></div>
@@ -253,20 +261,19 @@ footer li{margin-bottom:6px}
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Solo 52 de las 122 universidades públicas tienen licencia</h3>
-      <p class="sub">Cada cuadro es una universidad. Toca la leyenda para resaltar. «Solo con ley de creación» = sin comisión organizadora ni licencia aún.</p>
+      <h3>Solo 52 de 122 públicas tienen licencia</h3>
+      <p class="sub">Cada cuadro es una universidad. Toca la leyenda para resaltar.</p>
       <div class="legend" id="wfLegend"></div>
       <div class="waffle" id="waffle"></div>
-      <p class="sub" style="margin-top:14px">Hay 50 universidades públicas con comisión organizadora (sin órganos de gobierno elegidos); 12 de ellas ya están licenciadas.</p>
+      <details><summary>Qué significa cada grupo</summary><p>«Solo con ley de creación»: sin comisión organizadora ni licencia aún.</p><p>Hay 50 universidades públicas con comisión organizadora (sin órganos de gobierno elegidos); 12 de ellas ya están licenciadas.</p></details>
       <p class="src">Fuente: Sunedu, Minedu.</p>
     </div>
     <div class="card reveal">
-      <h3>El 81 % de las públicas licenciadas está fuera de Lima; el 55 % de las privadas, en Lima</h3>
-      <p class="sub">Ubicación de las universidades licenciadas.</p>
+      <h3>Las públicas están fuera de Lima; las privadas, en Lima</h3>
+      <p class="sub">El 81 % de las públicas licenciadas está fuera de Lima. El 55 % de las privadas, en Lima.</p>
       <div class="stackrow"><div class="cap">Públicas licenciadas (52)</div><div class="stack" id="geoPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas licenciadas (53)</div><div class="stack" id="geoPri"></div></div>
-      <p class="sub" style="margin-top:20px">Todas las regiones tienen al menos una universidad pública licenciada. La licencia es hoy de carácter permanente, siempre que se mantengan las condiciones básicas de calidad.</p>
-      <p class="sub">Entre 2018 y 2021 se denegó la licencia a 49 universidades (46 privadas y 3 públicas).</p>
+      <details><summary>Ver más</summary><p>Todas las regiones tienen al menos una universidad pública licenciada.</p><p>La licencia es hoy permanente, siempre que se mantengan las condiciones básicas de calidad.</p><p>Entre 2018 y 2021 se denegó la licencia a 49 universidades (46 privadas y 3 públicas).</p></details>
       <p class="src">Fuente: Sunedu, Minedu.</p>
     </div>
   </div>
@@ -288,20 +295,20 @@ footer li{margin-bottom:6px}
 <section id="acceso"><div class="wrap">
   <div class="kicker">Ingreso y permanencia</div>
   <h2>El acceso</h2>
-  <p class="intro">Entrar a la universidad sigue dependiendo del bolsillo. Y entrar a una pública es mucho más difícil que a una privada.</p>
+  <p class="intro">Entrar depende del bolsillo, y a una pública es mucho más difícil que a una privada.</p>
   <div id="g1"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Solo 1 de cada 10 jóvenes de escasos recursos accede a la universidad</h3>
-      <p class="sub">Tasa de matrícula de jóvenes de 18 a 24 años (%). Quintiles 1-2 = menores ingresos; 4-5 = mayores.</p>
+      <h3>Solo 1 de cada 10 jóvenes pobres entra a la universidad</h3>
+      <p class="sub">Jóvenes de 18 a 24 años que estudian (%). Quintiles 1-2 = hogares de menores ingresos; 4-5 = de mayores.</p>
       <div class="legend" id="lgAcc"></div>
       <div class="line" id="lnAcc"></div>
       <p class="src">Fuente: INEI (ENAHO).</p>
     </div>
     <div class="card reveal">
-      <h3 class="spoil">Por cada 10 postulantes a una pública ingresan 2; a una privada, 8</h3>
-      <p class="sub">De postulantes a ingresantes (2025). Más de 884 mil jóvenes postularon; el 53 % lo hizo a una privada.</p>
+      <h3 class="spoil">De cada 10 que postulan a una pública, entran 2; a una privada, 8</h3>
+      <p class="sub">Postulantes e ingresantes, 2025. Postularon más de 884 mil jóvenes (53 % a privadas).</p>
       <div class="seg" id="segPost" role="group" aria-label="Tipo de gestión"><button aria-pressed="true" data-k="pub">Pública</button><button aria-pressed="false" data-k="pri">Privada</button></div>
       <div id="post"></div>
       <p class="src">Fuente: SIRIES.</p>
@@ -309,8 +316,8 @@ footer li{margin-bottom:6px}
   </div>
 
   <div class="card line reveal" style="margin-top:14px">
-    <h3>Las privadas interrumpen más que las públicas: 14,1 % frente a 6,3 % en 2024-2</h3>
-    <p class="sub">% de estudiantes de pregrado que interrumpieron sus estudios por semestre. En 2024-2 la tasa total fue 12,3 %.</p>
+    <h3>Dejan de estudiar más en privadas: 14,1 % frente a 6,3 %</h3>
+    <p class="sub">% de estudiantes que interrumpen sus estudios por semestre. En 2024-2 el total fue 12,3 %.</p>
     <div class="legend" id="lgInt"></div>
     <div id="lnInt"></div>
     <p class="src">Solo universidades licenciadas. Fuente: SIRIES.</p>
@@ -322,41 +329,43 @@ footer li{margin-bottom:6px}
 <section id="estudiantes"><div class="wrap">
   <div class="kicker">Matrícula</div>
   <h2>Los estudiantes</h2>
-  <p class="intro">1 525 560 estudiantes de pregrado: <span class="spoil">3 de cada 4 estudian en una privada</span>, y cuatro universidades concentran el 41 % de toda la matrícula.</p>
+  <p class="intro">1 525 560 estudiantes de pregrado. <span class="spoil">3 de cada 4 estudian en una privada.</span></p>
   <div id="g2"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>El 70 % de los estudiantes tiene entre 18 y 24 años</h3>
+      <h3>7 de cada 10 tienen entre 18 y 24 años</h3>
       <p class="sub">% por rango de edad, 2025.</p>
       <div class="seg" id="segAge" role="group" aria-label="Tipo de gestión"><button aria-pressed="true" data-k="tot">Total</button><button aria-pressed="false" data-k="pub">Pública</button><button aria-pressed="false" data-k="pri">Privada</button></div>
       <div class="cols" id="age"></div>
       <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>Las privadas tienen más mujeres (52,7 %); las públicas, más varones (55,2 %)</h3>
-      <p class="sub">Mujeres y varones (2025) y pobreza (2023). SISFOH: Sistema de Focalización de Hogares, que clasifica a los hogares por nivel socioeconómico.</p>
+      <h3>Más mujeres en privadas; más varones en públicas</h3>
+      <p class="sub">Mujeres y varones (2025) y pobreza (2023), según el SISFOH (clasificación de hogares).</p>
       <div class="stackrow"><div class="cap">Privadas · mujeres 52,7 %</div><div class="stack" id="gPri"></div></div>
       <div class="stackrow"><div class="cap">Públicas · varones 55,2 %</div><div class="stack" id="gPub"></div></div>
       <div class="legend" id="lgGen"></div>
       <div class="stackrow" style="margin-top:22px"><div class="cap">Públicas · condición socioeconómica (2023)</div><div class="stack" id="nsePub"></div></div>
       <div class="stackrow"><div class="cap">Privadas · condición socioeconómica (2023)</div><div class="stack" id="nsePri"></div></div>
       <div class="legend" id="lgNse"></div>
-      <p class="src">«Sin dato o no pobre» agrupa a quienes no tienen clasificación en el SISFOH y a los clasificados como no pobres. Fuente: SIRIES, SISFOH.</p>
+      <details><summary>Qué es «sin dato o no pobre»</summary><p>Agrupa a quienes no tienen clasificación en el SISFOH y a los clasificados como no pobres.</p></details>
+      <p class="src">Fuente: SIRIES, SISFOH.</p>
     </div>
   </div>
 
   <div class="grid g2" style="margin-top:14px">
     <div class="card reveal">
-      <h3>De las 10 universidades con más estudiantes, solo una es pública</h3>
-      <p class="sub">Matrícula de pregrado 2025.</p>
+      <h3>De las 10 más grandes, solo una es pública</h3>
+      <p class="sub">Matrícula 2025. Cuatro privadas reúnen el 41 % del total.</p>
       <div class="hb" id="top10"></div>
       <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>Derecho, Administración y Psicología suman el 29 % de la matrícula</h3>
-      <p class="sub">Las 10 carreras más demandadas, matrícula 2025 (pública y privada). En las públicas, la de mayor peso es Producción Agrícola y Ganadera (6,9 %).</p>
+      <h3>Derecho, Administración y Psicología: 29 % de la matrícula</h3>
+      <p class="sub">Las 10 carreras más demandadas, 2025.</p>
       <div class="hb" id="carreras"></div>
+      <details><summary>Y en las públicas</summary><p>La carrera de mayor peso es Producción Agrícola y Ganadera (6,9 %).</p></details>
       <p class="src">Fuente: SIRIES.</p>
     </div>
   </div>
@@ -366,25 +375,26 @@ footer li{margin-bottom:6px}
 <section id="docentes"><div class="wrap">
   <div class="kicker">Plana docente</div>
   <h2>Los docentes</h2>
-  <p class="intro">89 088 docentes. En la pública hacen carrera; en la privada, la mayoría está contratada y a tiempo parcial.</p>
+  <p class="intro">89 088 docentes. En las públicas hacen carrera; en las privadas, la mayoría es contratada.</p>
   <div id="g3"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Los docentes de privadas pasaron de 47,7 a 63,4 mil entre 2017 y 2025</h3>
-      <p class="sub">Miles de docentes de pregrado, 2017–2025. Un docente puede estar contado más de una vez si trabaja en varias universidades.</p>
+      <h3>Más docentes en privadas: de 47,7 a 63,4 mil</h3>
+      <p class="sub">Miles de docentes de pregrado, 2017–2025.</p>
       <div class="cols" id="docEvo"></div>
       <div class="legend" style="margin-top:10px"><span><span class="dot" style="background:var(--pub)"></span>Públicas</span><span><span class="dot" style="background:var(--pri)"></span>Privadas</span></div>
+      <details><summary>Sobre el conteo</summary><p>Un docente puede estar contado más de una vez si trabaja en varias universidades.</p></details>
       <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>En las públicas el 76 % de los docentes hace carrera; en las privadas, el 9 %</h3>
-      <p class="sub">Condición laboral. Ordinario = ingresó por concurso público y hace carrera.</p>
+      <h3>Hacen carrera: 76 % en públicas, 9 % en privadas</h3>
+      <p class="sub">Tipo de contrato. Ordinario = ingresó por concurso público.</p>
       <div class="stackrow"><div class="cap">Públicas (25 705)</div><div class="stack" id="lPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas (63 383)</div><div class="stack" id="lPri"></div></div>
       <div class="legend" id="lgLab"></div>
-      <h3 style="margin-top:28px">Públicas: 71 % a tiempo completo o con dedicación exclusiva; privadas: 27 %</h3>
-      <p class="sub">Régimen de dedicación. La Ley Universitaria exige al menos 25 % a tiempo completo.</p>
+      <h3 style="margin-top:28px">Tiempo completo o exclusiva: 71 % en públicas, 27 % en privadas</h3>
+      <p class="sub">La ley exige al menos 25 % a tiempo completo.</p>
       <div class="stackrow"><div class="cap">Públicas</div><div class="stack" id="dPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas</div><div class="stack" id="dPri"></div></div>
       <div class="legend" id="lgDed"></div>
@@ -394,16 +404,16 @@ footer li{margin-bottom:6px}
 
   <div class="grid g2" style="margin-top:14px">
     <div class="card reveal">
-      <h3>Solo el 37,4 % de los docentes son mujeres; en las públicas, el 30,4 %</h3>
-      <p class="sub">Mujeres y varones por tipo de gestión.</p>
+      <h3>Solo 37 de cada 100 docentes son mujeres</h3>
+      <p class="sub">En las públicas, 30,4 %; en las privadas, 40,2 %.</p>
       <div class="stackrow"><div class="cap">Públicas</div><div class="stack" id="fPub"></div></div>
       <div class="stackrow"><div class="cap">Privadas</div><div class="stack" id="fPri"></div></div>
       <div class="legend" id="lgFem"></div>
       <p class="src">Fuente: SIRIES.</p>
     </div>
     <div class="card reveal">
-      <h3>Solo el 12,4 % de los docentes está en el Renacyt</h3>
-      <p class="sub">Renacyt: Registro Nacional Científico, Tecnológico y de Innovación Tecnológica del Concytec, 2025.</p>
+      <h3>Solo 12 de cada 100 docentes están en el Renacyt</h3>
+      <p class="sub">Registro de investigadores del Concytec, 2025.</p>
       <div class="hb" id="renacyt"></div>
       <p class="src">11 007 docentes registrados: 12,4 % del total. Fuente: SIRIES, Renacyt.</p>
     </div>
@@ -414,20 +424,21 @@ footer li{margin-bottom:6px}
 <section id="investigacion"><div class="wrap">
   <div class="kicker">Producción científica</div>
   <h2>La investigación</h2>
-  <p class="intro">Las publicaciones crecieron 57 % entre 2021 y 2025, pero Brasil produce <span class="spoil">9 veces</span> lo que produce el Perú.</p>
+  <p class="intro">Las publicaciones crecieron 57 % entre 2021 y 2025, pero Brasil publica <span class="spoil">9 veces</span> lo que el Perú.</p>
   <div id="g4"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3>Las publicaciones indizadas crecieron 57 % entre 2021 y 2025</h3>
-      <p class="sub">Artículos, revisiones y ponencias (Scopus). Toca una barra. Un artículo con afiliación pública y privada se cuenta en ambas, por eso las partes no suman exacto el total (7782 → 12 223).</p>
+      <h3>Las publicaciones crecieron 57 % en cuatro años</h3>
+      <p class="sub">Artículos, revisiones y ponencias (Scopus). Toca una barra.</p>
       <div class="cols" id="pubs"></div>
       <div class="legend" style="margin-top:10px"><span><span class="dot" style="background:var(--pub)"></span>Públicas</span><span><span class="dot" style="background:var(--pri)"></span>Privadas</span></div>
+      <details><summary>Por qué las partes no suman el total</summary><p>Un artículo con afiliación pública y privada se cuenta en ambas (7782 → 12 223).</p></details>
       <p class="src">Fuente: Elsevier-Scopus.</p>
     </div>
     <div class="card reveal">
-      <h3>San Marcos encabeza las publicaciones con 5 612 en 2021–2025</h3>
-      <p class="sub">Universidades con más publicaciones, acumulado 2021–2025.</p>
+      <h3>San Marcos lidera con 5 612 publicaciones</h3>
+      <p class="sub">Universidades con más publicaciones, 2021–2025.</p>
       <div class="seg" id="segRank" role="group" aria-label="Alcance"><button aria-pressed="true" data-k="all">Todas</button><button aria-pressed="false" data-k="pub">Solo públicas</button></div>
       <div class="hb" id="rank"></div>
       <p class="src">Fuente: Elsevier-Scopus.</p>
@@ -435,8 +446,8 @@ footer li{margin-bottom:6px}
   </div>
 
   <div class="card reveal" style="margin-top:14px">
-    <h3 class="spoil">Brasil publica 9 veces lo que publica el Perú, que es sexto en esta lista</h3>
-    <p class="sub">Perú en América Latina: publicaciones acumuladas 2021–2025.</p>
+    <h3 class="spoil">Brasil publica 9 veces lo que el Perú</h3>
+    <p class="sub">Publicaciones 2021–2025. El Perú es sexto en esta lista de 13 países.</p>
     <div class="hb" id="latam"></div>
     <p class="src">Fuente: Elsevier-Scopus.</p>
   </div>
@@ -446,20 +457,20 @@ footer li{margin-bottom:6px}
 <section id="egresados"><div class="wrap">
   <div class="kicker">Mercado laboral</div>
   <h2>Los egresados</h2>
-  <p class="intro">579 714 jóvenes de 22 a 29 años con estudios universitarios culminados trabajaban en 2025. Solo <span class="spoil">6 de cada 10</span> tenían un empleo adecuado.</p>
+  <p class="intro">579 714 jóvenes de 22 a 29 años con universidad completa trabajaban en 2025. Solo <span class="spoil">6 de cada 10</span> tenían empleo adecuado.</p>
   <div id="g5"></div>
 
   <div class="grid g2">
     <div class="card reveal">
-      <h3 class="spoil">Solo 6 de cada 10 jóvenes egresados tienen un empleo adecuado</h3>
-      <p class="sub">Empleo de jóvenes de 22 a 29 años con universidad culminada (2025).</p>
+      <h3 class="spoil">Solo 6 de cada 10 tienen empleo adecuado</h3>
+      <p class="sub">Jóvenes egresados de 22 a 29 años, 2025.</p>
       <div class="stack" id="emp" style="height:44px"></div>
       <div class="legend" id="lgEmp" style="margin-top:12px"></div>
       <p class="src">Fuente: INEI (ENAHO). Los porcentajes del informe suman 101 por redondeo.</p>
     </div>
     <div class="card reveal">
-      <h3>El 42,6 % de los egresados ocupados estudió ciencias sociales, comerciales y derecho</h3>
-      <p class="sub">% de la PEA ocupada con universidad completa, por campo (2025).</p>
+      <h3>El 42,6 % estudió ciencias sociales, comerciales o derecho</h3>
+      <p class="sub">Egresados ocupados por campo de estudio (%), 2025.</p>
       <div class="hb" id="campo"></div>
       <p class="src">Fuente: INEI (ENAHO).</p>
     </div>
@@ -467,7 +478,7 @@ footer li{margin-bottom:6px}
 
   <div class="card reveal" style="margin-top:14px">
     <h3>¿Dónde caería tu ingreso?</h3>
-    <p class="sub">Ingreso laboral mensual de jóvenes egresados universitarios, 2025. Escribe o mueve el control.</p>
+    <p class="sub">Ingreso mensual de jóvenes egresados, 2025. Mueve el control.</p>
     <div class="inc" id="inc"><div class="axis"></div><div class="range"></div></div>
     <div class="row" style="display:flex;gap:12px;align-items:center;margin-top:6px;flex-wrap:wrap">
       <input id="incIn" type="range" min="0" max="4000" step="50" value="1800" style="flex:1 1 220px;accent-color:var(--hi)" aria-label="Ingreso mensual en soles">
@@ -485,9 +496,9 @@ footer li{margin-bottom:6px}
     <li>El informe da 437 184 ingresantes en total, pero sus partes (72 460 públicas + 353 346 privadas) suman 425 806. Aquí se usan las partes.</li>
     <li>Sobre dedicación en privadas: el texto del informe dice «más del 75 % a tiempo parcial» y su gráfico 72,9 %. Aquí se usa el gráfico.</li>
     <li>La tasa de matrícula de quintiles, la edad por gestión y la evolución docente por gestión se reconstruyeron cruzando los valores del gráfico con los totales; coinciden con los porcentajes que el informe da en texto.</li>
-    <li>Hecho por <b>Liz Riveros</b> en <b>Crafter Research</b>. Inspirado en el post de Hernán De La Cruz Cruzado (participó en el informe) y en la idea de cuadros que se reacomodan de Land vs People (Crafter Research). El estilo sigue la guía de marca de Crafter Research.</li>
+    <li>Hecho por <b>Liz Riveros</b> en <b>Crafter Research</b>, basado en el informe del Minedu. Inspirado en el post de Hernán De La Cruz Cruzado (participó en el informe) y en la idea de cuadros que se reacomodan de Land vs People (Crafter Research). El estilo sigue la guía de marca de Crafter Research.</li>
     <li>En los cuadros, cada uno vale 1/1000 del total; las medidas con porcentajes del informe (edad, dedicación, pobreza) son aproximadas y así se marcan.</li>
-    <li>Glosario. <b>Quintiles</b>: cinco grupos de igual tamaño según el ingreso per cápita del hogar. <b>Comisión organizadora</b>: autoridades designadas de una universidad pública nueva, sin órganos de gobierno elegidos.</li>
+    <li>Glosario. <b>Renacyt</b>: Registro Nacional Científico, Tecnológico y de Innovación Tecnológica. <b>SISFOH</b>: Sistema de Focalización de Hogares. <b>Quintiles</b>: cinco grupos de igual tamaño según el ingreso per cápita del hogar. <b>Comisión organizadora</b>: autoridades designadas de una universidad pública nueva, sin órganos de gobierno elegidos.</li>
     <li>Informe completo: <a href="https://www.gob.pe/institucion/minedu/informes-publicaciones/8801214-la-universidad-en-cifras" target="_blank" rel="noopener">gob.pe/minedu</a></li>
   </ul>
 </div></footer>
@@ -678,7 +689,7 @@ function guess(host,{q,truth,unit='%',note,max=100}){
 /* ============ acceso ============ */
 (function(){
   lineChart($('#lnAcc'),{labels:['2019','2020','2021','2022','2023','2024','2025'],min:0,max:45,legend:$('#lgAcc'),
-    series:[{name:'Quintiles 4-5',color:'c8',data:[34.8,30.0,31.9,31.5,33.8,37.1,39.0]},{name:'Quintiles 1-2',color:'c6',data:[9.9,10.7,9.8,10.4,10.8,12.9,12.2]},{name:'Brecha',color:'c4',data:[24.9,19.3,22.1,21.0,23.0,24.2,26.7]}]});
+    series:[{name:'Más ricos (quintiles 4-5)',color:'c8',data:[34.8,30.0,31.9,31.5,33.8,37.1,39.0]},{name:'Más pobres (quintiles 1-2)',color:'c6',data:[9.9,10.7,9.8,10.4,10.8,12.9,12.2]},{name:'Brecha',color:'c4',data:[24.9,19.3,22.1,21.0,23.0,24.2,26.7]}]});
   const P={pub:{n:'Públicas',a:411537,i:72460,c:'pub'},pri:{n:'Privadas',a:472491,i:353346,c:'pri'}};
   function post(k){const p=P[k],el=$('#post');
     el.innerHTML=`<div style="display:flex;align-items:baseline;gap:10px;margin:6px 0 14px"><span class="stat num" style="color:var(--${p.c})">${(p.i/p.a*100).toFixed(0)} %</span><span class="statcap">de los postulantes a universidades ${p.n.toLowerCase()} ingresan</span></div><div class="hb" id="postB" style="grid-template-columns:90px 1fr auto"></div>`;
