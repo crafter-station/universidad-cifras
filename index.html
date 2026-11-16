@@ -152,6 +152,7 @@ svg text{font:12px var(--mono);fill:var(--mute)}
 .guess button{border:0;background:var(--bg);color:var(--ink);padding:8px 16px;min-height:36px;border-radius:99px;font:400 12px var(--mono);cursor:pointer}
 .guess button.ghost{background:transparent;color:var(--bg);text-decoration:underline;text-underline-offset:3px}
 .guess :focus-visible{outline-color:var(--bg)}
+.guess .hintg{font:400 13px/1.4 var(--sans);opacity:.8;margin:-4px 0 12px}
 .guess .btns{display:flex;gap:8px;align-items:center}
 .guess{margin:0 0 32px}
 section.guessing .spoil{filter:blur(7px);user-select:none;transition:filter .5s}
@@ -614,7 +615,7 @@ function guess(host,{q,truth,unit='%',note,max=100}){
   const sec=host.closest('section');if(sec)sec.classList.add('guessing');
   const u=unit.trim()==='%'?'puntos':unit.trim();
   const d=document.createElement('div');d.className='guess';
-  d.innerHTML=`<p class="q">Adivina: ${q}</p><input type="range" min="0" max="${max}" value="${Math.round(max/2)}" aria-label="Tu respuesta: ${q}"><div class="row"><span class="gv num" aria-hidden="true">${Math.round(max/2)}${unit}</span><div class="btns"><button class="go">Ver respuesta</button><button class="ghost skip">Saltar</button></div></div><div class="res" aria-live="polite"></div>`;
+  d.innerHTML=`<p class="q">Adivina: ${q}</p><p class="hintg">Mientras no respondas, algunas cifras de esta sección están difuminadas. Al responder se revelan.</p><input type="range" min="0" max="${max}" value="${Math.round(max/2)}" aria-label="Tu respuesta: ${q}"><div class="row"><span class="gv num" aria-hidden="true">${Math.round(max/2)}${unit}</span><div class="btns"><button class="go">Ver respuesta</button><button class="ghost skip">Saltar y ver las cifras</button></div></div><div class="res" aria-live="polite"></div>`;
   const r=d.querySelector('input'),gv=d.querySelector('.gv'),res=d.querySelector('.res'),go=d.querySelector('.go'),skip=d.querySelector('.skip');
   const open=()=>{if(sec)sec.classList.remove('guessing')};
   r.oninput=()=>gv.textContent=r.value+unit;
@@ -763,7 +764,7 @@ function guess(host,{q,truth,unit='%',note,max=100}){
 
 /* ============ egresados ============ */
 (function(){
-  stack($('#emp'),[{label:'Empleo adecuado',v:61,color:'s1'},{label:'Subempleado',v:19,color:'s2'},{label:'Desempleado o inactivo',v:21,color:'hi'}],{total:101});
+  stack($('#emp'),[{label:'Empleo adecuado',v:61,color:'s1',text:'61 %',raw:'61 %'},{label:'Subempleado',v:19,color:'s2',text:'19 %',raw:'19 %'},{label:'Desempleado o inactivo',v:21,color:'hi',text:'21 %',raw:'21 %'}],{total:101});
   $('#lgEmp').innerHTML='<span><span class="dot" style="background:var(--s1)"></span>Empleo adecuado 61 %</span><span><span class="dot" style="background:var(--s2)"></span>Subempleado 19 %</span><span><span class="dot" style="background:var(--hi)"></span>Desempleado o inactivo 21 %</span>';
   hbars($('#campo'),[['Ciencias sociales, comerciales y derecho',42.6],['Ingeniería, industria y construcción',24.2],['Educación',15.0],['Ciencias de la salud',9.2],['Ciencias naturales, exactas y comunicación',3.7],['Agropecuaria y veterinaria',3.3],['Humanidades y arte',2.1]].map(c=>({l:c[0],v:c[1],t:c[1].toFixed(1).replace('.',',')+' %'})),{color:'s2',max:45});
 
